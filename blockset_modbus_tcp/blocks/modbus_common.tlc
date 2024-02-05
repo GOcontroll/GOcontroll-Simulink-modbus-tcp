@@ -1,0 +1,6 @@
+%function ModbusServerCommonBlockTypeSetup() void
+	%<LibAddToCommonIncludes("GocontrollModbus.h")>
+	%<LibAddToCommonIncludes("modbus-tcp.h")>
+	%<LibAddToCommonIncludes(<pthread.h>)>
+	%<LibAddToCommonIncludes(<string.h>)>
+%endfunction

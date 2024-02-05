@@ -1,0 +1,115 @@
+%%***************************************************************************************
+%% file         sfcn_modbus_server_read_map.tlc
+%% brief        Target Language Compiler file that contains the code generation specifics
+%%              for an S-function with the same name.
+%%
+%%---------------------------------------------------------------------------------------
+%%                          C O P Y R I G H T
+%%---------------------------------------------------------------------------------------
+%%  Copyright 2024 (c) by GOcontroll      http://www.gocontroll.com     All rights reserved
+%%
+%%---------------------------------------------------------------------------------------
+%%                            L I C E N S E
+%%---------------------------------------------------------------------------------------
+%% Permission is hereby granted, free of charge, to any person obtaining a copy of this
+%% software and associated documentation files (the "Software"), to deal in the Software
+%% without restriction, including without limitation the rights to use, copy, modify, merge,
+%% publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+%% persons to whom the Software is furnished to do so, subject to the following conditions:
+%%
+%% The above copyright notice and this permission notice shall be included in all copies or
+%% substantial portions of the Software.
+%%
+%% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+%% INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+%% PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+%% FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+%% OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+%% DEALINGS IN THE SOFTWARE.
+%% endinternal
+%%
+%%***************************************************************************************
+
+%implements sfcn_modbus_server_read_map "C"
+
+%function ReadMemoryBlock(block, tab) Output
+	%switch (LibBlockParameterValue(data_type,0))
+		%case 1 //double
+			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(double));
+			%break
+		%case 2 //single/float
+			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(float));
+			%break
+		%case 3 //int8
+		%case 4 //uint8
+			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(char));
+			%break
+		%case 5 //int16
+		%case 6 //uint16
+			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(short));
+			%break
+		%case 7 //int32
+		%case 8 //uint32
+			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(int));
+			%break
+		%case 9 //boolean
+			map->%<tab>[LibBlockParameterValue(address,0)] = map->%<tab>[LibBlockParameterValue(address,0)] | 1 << LibBlockParameterValue(bit,0);
+			%break
+		%default
+			%<LibBlockReportError(block, "Invalid data type!")>
+
+%% Function: BlockTypeSetup ==========================================================
+%%
+%% Purpose:
+%%      Code generation for configuration
+%%
+%function BlockTypeSetup(block, system) void
+	%<ModbusServerCommonBlockTypeSetup()>
+%endfunction
+
+%function BlockInstanceSetup(block, system) void
+%endfunction
+
+%% Function: Start ==========================================================
+%%
+%% Purpose:
+%%      initialize the reconnect_state struct
+%%
+%function Start(block, system) Output
+	%if EXISTS(::go_modbus_server_config_present) == 0
+		%<LibBlockReportError(block, "Modbus server configuration block is missing!")>
+	%endif
+%endfunction
+
+%% Function: Output ==========================================================
+%%
+%% Purpose:
+%%      Code generation for signal output
+%%
+%function Outputs(block, system) Output
+	pthread_mutex_lock(map_lock);
+	%switch (LibBlockParameterValue(block_type,0))
+		%case 1 //coil
+			%<ReadMemoryBlock(block, "tab_bits")>
+			%break
+		%case 2 //discrete
+			%<ReadMemoryBlock(block, "tab_input_bits")>
+			%break
+		%case 3 //holding
+			%<ReadMemoryBlock(block, "tab_input_registers")>
+			%break
+		%case 4 //input
+			%<ReadMemoryBlock(block, "tab_registers")>
+			%break
+		%default
+			%<LibBlockReportError(block, "Invalid memory block type!")>
+	pthread_mutex_unlock(map_lock);
+%endfunction
+
+%% Function: Terminate ==========================================================
+%%
+%% Purpose:
+%%      Code generation for signal output
+%%
+%function Terminate (block, system) Output
+%endfunction

@@ -1,0 +1,92 @@
+%%***************************************************************************************
+%% file         sfcn_modbus_server_config.tlc
+%% brief        Target Language Compiler file that contains the code generation specifics
+%%              for an S-function with the same name.
+%%
+%%---------------------------------------------------------------------------------------
+%%                          C O P Y R I G H T
+%%---------------------------------------------------------------------------------------
+%%  Copyright 2024 (c) by GOcontroll      http://www.gocontroll.com     All rights reserved
+%%
+%%---------------------------------------------------------------------------------------
+%%                            L I C E N S E
+%%---------------------------------------------------------------------------------------
+%% Permission is hereby granted, free of charge, to any person obtaining a copy of this
+%% software and associated documentation files (the "Software"), to deal in the Software
+%% without restriction, including without limitation the rights to use, copy, modify, merge,
+%% publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+%% persons to whom the Software is furnished to do so, subject to the following conditions:
+%%
+%% The above copyright notice and this permission notice shall be included in all copies or
+%% substantial portions of the Software.
+%%
+%% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+%% INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+%% PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+%% FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+%% OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+%% DEALINGS IN THE SOFTWARE.
+%% endinternal
+%%
+%%***************************************************************************************
+
+%implements sfcn_modbus_server_config "C"
+
+%% Function: BlockTypeSetup ==========================================================
+%%
+%% Purpose:
+%%      Code generation for configuration
+%%
+%function BlockTypeSetup(block, system) void
+	%assign ::go_modbus_server_config_present = 1
+	%assign ::go_modbus_coils_num = LibBlockParameterValue(coils_num, 0)
+	%assign ::go_modbus_discrete_in_num = LibBlockParameterValue(discrete_in_num, 0)
+	%assign ::go_modbus_holding_num = LibBlockParameterValue(holding_num, 0)
+	%assign ::go_modubs_input_num = LibBlockParameterValue(input_num, 0)
+	%<ModbusServerCommonBlockTypeSetup()>
+%endfunction
+
+%function BlockInstanceSetup(block, system) void
+	%if EXISTS("go_modbus_server_config_in_model") == 0
+		%assign ::go_modbus_server_config_in_model = 1
+	%else
+		%<LibBlockReportError(block, "Only one Modbus server config block is allowed in the model.")>
+	%endif
+%endfunction
+
+%% Function: Start ==========================================================
+%%
+%% Purpose:
+%%      initialize the reconnect_state struct
+%%
+%function Start(block, system) Output
+
+	%openfile tmpBuf
+	modbus_mapping_t *map;
+	pthread_mutex_t *map_lock;
+	%closefile tmpBuf
+	%<LibSetSourceFileSection(LibGetModelDotCFile(), "UserTop", tmpBuf)>
+
+	map = modbus_mapping_new_start_address(LibBlockParameterValue(coils_addr,0),LibBlockParameterValue(coils_num, 0), LibBlockParameterValue(discrete_in_addr,0),LibBlockParameterValue(discrete_in_num, 0), LibBlockParameterValue(holding_addr,0),LibBlockParameterValue(holding_num, 0), LibBlockParameterValue(input_addr,0),LibBlockParameterValue(input_num, 0));
+	start_modbus_thread(map, map_lock, LibBlockParameterValue(port,0));
+%endfunction
+
+%% Function: Output ==========================================================
+%%
+%% Purpose:
+%%      Code generation for signal output
+%%
+%function Outputs(block, system) Output
+%endfunction
+
+%% Function: Terminate ==========================================================
+%%
+%% Purpose:
+%%      Code generation for signal output
+%%
+%function Terminate (block, system) Output
+  %%
+  /* Terminate the modbus server */
+	stop_modbus_thread();
+  %%
+%endfunction

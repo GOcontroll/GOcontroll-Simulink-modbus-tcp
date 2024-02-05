@@ -1,5 +1,5 @@
 %%***************************************************************************************
-%% file         sfcn_UDPConfig.tlc
+%% file         sfcn_modbus_server_read_map.tlc
 %% brief        Target Language Compiler file that contains the code generation specifics
 %%              for an S-function with the same name.
 %%
@@ -30,11 +30,33 @@
 %%
 %%***************************************************************************************
 
-%implements sfcn_modbus_config "C"
+%implements sfcn_modbus_server_read_map "C"
 
-%<LibAddToCommonIncludes("GocontrollModbus.h")>
-%<LibAddToCommonIncludes("modbus-tcp.h")>
-%<LibAddToCommonIncludes(<pthread.h>)>
+%function ReadMemoryBlock(block, tab) Output
+	%switch (LibBlockParameterValue(data_type,0))
+		%case 1 //double
+			memcpy(%<LibBlockOutputSignalAddr(1, "", "", 0)>, map->%<tab> + LibBlockParameterValue(address,0), LibBlockParameterValue(length,0)*sizeof(double));
+			%break
+		%case 2 //single/float
+			memcpy(%<LibBlockOutputSignalAddr(1, "", "", 0)>, map->%<tab> + LibBlockParameterValue(address,0), LibBlockParameterValue(length,0)*sizeof(float));
+			%break
+		%case 3 //int8
+		%case 4 //uint8
+			memcpy(%<LibBlockOutputSignalAddr(1, "", "", 0)>, map->%<tab> + LibBlockParameterValue(address,0), LibBlockParameterValue(length,0)*sizeof(char));
+			%break
+		%case 5 //int16
+		%case 6 //uint16
+			memcpy(%<LibBlockOutputSignalAddr(1, "", "", 0)>, map->%<tab> + LibBlockParameterValue(address,0), LibBlockParameterValue(length,0)*sizeof(short));
+			%break
+		%case 7 //int32
+		%case 8 //uint32
+			memcpy(%<LibBlockOutputSignalAddr(1, "", "", 0)>, map->%<tab> + LibBlockParameterValue(address,0), LibBlockParameterValue(length,0)*sizeof(int));
+			%break
+		%case 9 //boolean
+			%LibBlockOutputSignal = map->%<tab>[LibBlockParameterValue(address,0)] & 1 << LibBlockParameterValue(bit,0) > 0;
+			%break
+		%default
+			%<LibBlockReportError(block, "Invalid data type!")>
 
 %% Function: BlockTypeSetup ==========================================================
 %%
@@ -42,7 +64,10 @@
 %%      Code generation for configuration
 %%
 %function BlockTypeSetup(block, system) void
+	%<ModbusServerCommonBlockTypeSetup()>
+%endfunction
 
+%function BlockInstanceSetup(block, system) void
 %endfunction
 
 %% Function: Start ==========================================================
@@ -51,18 +76,9 @@
 %%      initialize the reconnect_state struct
 %%
 %function Start(block, system) Output
-
-	%openfile tmpBuf
-	modbus_mapping_t *map;
-	pthread_mutex_t *map_lock;
-	const char *modbus_config = "modbus already has a configuration block, more than one is not allowed."
-	%closefile tmpBuf
-
-	%assign srcFile = LibGetModelDotCFile()
-	%<LibSetSourceFileSection(srcFile, "UserTop", tmpBuf)>
-
-	modbus_map = modbus_mapping_new_start_address();
-	start_modbus_thread(map, map_lock, some port argument here);
+	%if EXISTS(::go_modbus_server_config_present) == 0
+		%<LibBlockReportError(block, "Modbus server configuration block is missing!")>
+	%endif
 %endfunction
 
 %% Function: Output ==========================================================
@@ -71,6 +87,35 @@
 %%      Code generation for signal output
 %%
 %function Outputs(block, system) Output
+	pthread_mutex_lock(map_lock);
+	%switch (LibBlockParameterValue(block_type,0))
+		%case 1 //coil
+			%if ::go_modbus_coils_num <= LibBlockParameterValue(address, 0)
+				%<LibBlockReportError(block, "coil is out of address range")>
+			%endif
+			%<ReadMemoryBlock(block, "tab_bits")>
+			%break
+		%case 2 //discrete
+			%if ::go_modbus_discrete_in_num <= LibBlockParameterValue(address, 0)
+				%<LibBlockReportError(block, "coil is out of address range")>
+			%endif
+			%<ReadMemoryBlock(block, "tab_input_bits")>
+			%break
+		%case 3 //holding
+			%if ::go_modbus_holding_num <= LibBlockParameterValue(address, 0)
+				%<LibBlockReportError(block, "coil is out of address range")>
+			%endif
+			%<ReadMemoryBlock(block, "tab_input_registers")>
+			%break
+		%case 4 //input
+			%if ::go_modbus_input_num <= LibBlockParameterValue(address, 0)
+				%<LibBlockReportError(block, "coil is out of address range")>
+			%endif
+			%<ReadMemoryBlock(block, "tab_registers")>
+			%break
+		%default
+			%<LibBlockReportError(block, "Invalid memory block type!")>
+	pthread_mutex_unlock(map_lock);
 %endfunction
 
 %% Function: Terminate ==========================================================
@@ -79,8 +124,4 @@
 %%      Code generation for signal output
 %%
 %function Terminate (block, system) Output
-  %%
-  /* Close UDP socket and free buffers */
-	stop_modbus_thread();
-  %%
 %endfunction
