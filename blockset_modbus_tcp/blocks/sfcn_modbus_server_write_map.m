@@ -112,6 +112,8 @@ function setup(block)
 	%%   C-Mex counterpart: mdlTerminate
 	%%
 	block.RegBlockMethod('Terminate', @Terminate);
+
+	block.RegBlockMethod('WriteRTW', @WriteRTW);
 %endfunction
 
 function Start(block)
@@ -140,5 +142,16 @@ function Terminate(block)
 
 %endfunction
 
+function WriteRTW(block)
+	address = 2;
+	block_type = 3;
+	data_type = 4;
+	bit = 5;
+	length = 6;
+	block.WriteRTWParam('string', 'address', num2str(block.DialogPrm(address).Data));
+	block.WriteRTWParam('string', 'block_type', num2str(block.DialogPrm(block_type).Data));
+	block.WriteRTWParam('string', 'data_type', num2str(block.DialogPrm(data_type).Data));
+	block.WriteRTWParam('string', 'bit', num2str(block.DialogPrm(bit).Data));
+	block.WriteRTWParam('string', 'length', num2str(block.DialogPrm(length).Data));
 
 %%******************************* end of sfcn_modbus_server_write_map.m **********************

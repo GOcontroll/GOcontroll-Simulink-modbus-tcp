@@ -1,5 +1,5 @@
 %%***************************************************************************************
-%% file         blockset_modbustcp_version.m
+%% file         blockset_modbus_version.m
 %% brief        Sets the blockset version in the simulink blocks
 %%
 %%---------------------------------------------------------------------------------------
@@ -28,6 +28,11 @@
 %%
 %%***************************************************************************************
 
-function [version] = blockset_modbustcp_version()
+function [version] = blockset_modbus_version()
 
-version = "ModbusTCP v0.0.0";
+version = "Modbus v0.0.1";
+
+%% V0.0.1 Update 6-2-2024
+%% first time actually running in a model, for some reason holding/input register do not seem to work properly yet,
+%% coils and discrete inputs do however seem to work.
+%% this version only supports a modbus tcp server functionality, hopefully other functions will be added later

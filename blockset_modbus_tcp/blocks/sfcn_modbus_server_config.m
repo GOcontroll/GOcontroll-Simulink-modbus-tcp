@@ -60,19 +60,9 @@ function setup(block)
 	block.NumOutputPorts = 0;
 
 	% Number of S-Function parameters expected
-	tsamp = 1;
-	port = 2;
-	coils_addr = 3;
-	coils_num = 4;
-	discrete_in_addr = 5;
-	discrete_in_num = 6;
-	holding_addr = 7;
-	holding_num = 8;
-	input_addr = 9;
-	input_num = 10;
 
-	block.NumDialogPrms     = 10;
-	block.SampleTimes = [block.DialogPrm(tsamp).Data 0];
+	block.NumDialogPrms     = 9;
+	block.SampleTimes = [1 0];
 	%% -----------------------------------------------------------------
 	%% Register methods called at run-time
 	%% -----------------------------------------------------------------
@@ -108,6 +98,8 @@ function setup(block)
 	%%   C-Mex counterpart: mdlTerminate
 	%%
 	block.RegBlockMethod('Terminate', @Terminate);
+
+	block.RegBlockMethod('WriteRTW', @WriteRTW);
 %endfunction
 
 function Start(block)
@@ -136,5 +128,33 @@ function Terminate(block)
 
 %endfunction
 
+function WriteRTW(block)
+	port = 1;
+	coils_addr = 2;
+	coils_num = 3;
+	discrete_in_addr = 4;
+	discrete_in_num = 5;
+	holding_addr = 6;
+	holding_num = 7;
+	input_addr = 8;
+	input_num = 9;
+	block.WriteRTWParam('string', 'port', num2str(block.DialogPrm(port).Data));
+	block.WriteRTWParam('string', 'coils_addr', num2str(block.DialogPrm(coils_addr).Data));
+	block.WriteRTWParam('string', 'coils_num', num2str(block.DialogPrm(coils_num).Data));
+	block.WriteRTWParam('string', 'discrete_in_addr', num2str(block.DialogPrm(discrete_in_addr).Data));
+	block.WriteRTWParam('string', 'discrete_in_num', num2str(block.DialogPrm(discrete_in_num).Data));
+	block.WriteRTWParam('string', 'holding_addr', num2str(block.DialogPrm(holding_addr).Data));
+	block.WriteRTWParam('string', 'holding_num', num2str(block.DialogPrm(holding_num).Data));
+	block.WriteRTWParam('string', 'input_addr', num2str(block.DialogPrm(input_addr).Data));
+	block.WriteRTWParam('string', 'input_num', num2str(block.DialogPrm(input_num).Data));
+	% block.WriteRTWParam('string', 'port', block.DialogPrm(port).Data);
+	% block.WriteRTWParam('string', 'coils_addr', block.DialogPrm(coils_addr).Data);
+	% block.WriteRTWParam('string', 'coils_num', block.DialogPrm(coils_num).Data);
+	% block.WriteRTWParam('string', 'discrete_in_addr', block.DialogPrm(discrete_in_addr).Data);
+	% block.WriteRTWParam('string', 'discrete_in_num', block.DialogPrm(discrete_in_num).Data);
+	% block.WriteRTWParam('string', 'holding_addr', block.DialogPrm(holding_addr).Data);
+	% block.WriteRTWParam('string', 'holding_num', block.DialogPrm(holding_num).Data);
+	% block.WriteRTWParam('string', 'input_addr', block.DialogPrm(input_addr).Data);
+	% block.WriteRTWParam('string', 'input_num', block.DialogPrm(input_num).Data);
 
 %%******************************* end of sfcn_modbus_server_config.m **********************

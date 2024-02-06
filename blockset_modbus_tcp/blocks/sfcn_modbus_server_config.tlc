@@ -31,6 +31,7 @@
 %%***************************************************************************************
 
 %implements sfcn_modbus_server_config "C"
+%include "modbus_common.tlc"
 
 %% Function: BlockTypeSetup ==========================================================
 %%
@@ -39,10 +40,10 @@
 %%
 %function BlockTypeSetup(block, system) void
 	%assign ::go_modbus_server_config_present = 1
-	%assign ::go_modbus_coils_num = LibBlockParameterValue(coils_num, 0)
-	%assign ::go_modbus_discrete_in_num = LibBlockParameterValue(discrete_in_num, 0)
-	%assign ::go_modbus_holding_num = LibBlockParameterValue(holding_num, 0)
-	%assign ::go_modubs_input_num = LibBlockParameterValue(input_num, 0)
+	%assign ::go_modbus_coils_num = %<block.ParamSettings.coils_num>%%LibBlockParameterValue(coils_num, 0)
+	%assign ::go_modbus_discrete_in_num = %<block.ParamSettings.discrete_in_num>%%LibBlockParameterValue(discrete_in_num, 0)
+	%assign ::go_modbus_holding_num = %<block.ParamSettings.holding_num>%%LibBlockParameterValue(holding_num, 0)
+	%assign ::go_modbus_input_num = %<block.ParamSettings.input_num>%%LibBlockParameterValue(input_num, 0)
 	%<ModbusServerCommonBlockTypeSetup()>
 %endfunction
 
@@ -63,12 +64,14 @@
 
 	%openfile tmpBuf
 	modbus_mapping_t *map;
-	pthread_mutex_t *map_lock;
+	static pthread_mutex_t map_lock = PTHREAD_MUTEX_INITIALIZER;
 	%closefile tmpBuf
 	%<LibSetSourceFileSection(LibGetModelDotCFile(), "UserTop", tmpBuf)>
 
-	map = modbus_mapping_new_start_address(LibBlockParameterValue(coils_addr,0),LibBlockParameterValue(coils_num, 0), LibBlockParameterValue(discrete_in_addr,0),LibBlockParameterValue(discrete_in_num, 0), LibBlockParameterValue(holding_addr,0),LibBlockParameterValue(holding_num, 0), LibBlockParameterValue(input_addr,0),LibBlockParameterValue(input_num, 0));
-	start_modbus_thread(map, map_lock, LibBlockParameterValue(port,0));
+	%%map = modbus_mapping_new_start_address(LibBlockParameterValue(coils_addr,0),LibBlockParameterValue(coils_num, 0), LibBlockParameterValue(discrete_in_addr,0),LibBlockParameterValue(discrete_in_num, 0), LibBlockParameterValue(holding_addr,0),LibBlockParameterValue(holding_num, 0), LibBlockParameterValue(input_addr,0),LibBlockParameterValue(input_num, 0));
+	%%start_modbus_thread(map, map_lock, LibBlockParameterValue(port,0));
+	map = modbus_mapping_new_start_address(%<block.ParamSettings.coils_addr>,%<block.ParamSettings.coils_num>, %<block.ParamSettings.discrete_in_addr>,%<block.ParamSettings.discrete_in_num>, %<block.ParamSettings.holding_addr>,%<block.ParamSettings.holding_num>, %<block.ParamSettings.input_addr>,%<block.ParamSettings.input_num>);
+	start_modbus_thread(map, &map_lock, %<block.ParamSettings.port>);
 %endfunction
 
 %% Function: Output ==========================================================

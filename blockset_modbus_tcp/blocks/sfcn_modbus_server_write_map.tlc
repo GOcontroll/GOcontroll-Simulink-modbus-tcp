@@ -30,33 +30,39 @@
 %%
 %%***************************************************************************************
 
-%implements sfcn_modbus_server_read_map "C"
+%implements sfcn_modbus_server_write_map "C"
+%include "modbus_common.tlc"
 
 %function ReadMemoryBlock(block, tab) Output
-	%switch (LibBlockParameterValue(data_type,0))
-		%case 1 //double
-			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(double));
+	%switch (%<block.ParamSettings.data_type>)
+		%case 1 %%double
+			memcpy(map->%<tab> + %<block.ParamSettings.address>, %<LibBlockInputSignalAddr(0, "", "", 0)>, %<block.ParamSettings.length>*sizeof(double));
 			%break
-		%case 2 //single/float
-			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(float));
+		%case 2 %%single/float
+			memcpy(map->%<tab> + %<block.ParamSettings.address>, %<LibBlockInputSignalAddr(0, "", "", 0)>, %<block.ParamSettings.length>*sizeof(float));
 			%break
-		%case 3 //int8
-		%case 4 //uint8
-			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(char));
+		%case 3 %%int8
+		%case 4 %%uint8
+			memcpy(map->%<tab> + %<block.ParamSettings.address>, %<LibBlockInputSignalAddr(0, "", "", 0)>, %<block.ParamSettings.length>*sizeof(char));
 			%break
-		%case 5 //int16
-		%case 6 //uint16
-			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(short));
+		%case 5 %%int16
+		%case 6 %%uint16
+			memcpy(map->%<tab> + %<block.ParamSettings.address>, %<LibBlockInputSignalAddr(0, "", "", 0)>, %<block.ParamSettings.length>*sizeof(short));
 			%break
-		%case 7 //int32
-		%case 8 //uint32
-			memcpy(map->%<tab> + LibBlockParameterValue(address,0), %<LibBlockOutputSignalAddr(1, "", "", 0)>, LibBlockParameterValue(length,0)*sizeof(int));
+		%case 7 %%int32
+		%case 8 %%uint32
+			memcpy(map->%<tab> + %<block.ParamSettings.address>, %<LibBlockInputSignalAddr(0, "", "", 0)>, %<block.ParamSettings.length>*sizeof(int));
 			%break
-		%case 9 //boolean
-			map->%<tab>[LibBlockParameterValue(address,0)] = map->%<tab>[LibBlockParameterValue(address,0)] | 1 << LibBlockParameterValue(bit,0);
+		%case 9 %%boolean
+			if (%<LibBlockInputSignal(0,"","",0)>)
+				map->%<tab>[%<block.ParamSettings.address>] = map->%<tab>[%<block.ParamSettings.address>] | 1 << %<block.ParamSettings.bit>;
+			else
+				map->%<tab>[%<block.ParamSettings.address>] = map->%<tab>[%<block.ParamSettings.address>] & ~(1 << %<block.ParamSettings.bit>);
 			%break
 		%default
 			%<LibBlockReportError(block, "Invalid data type!")>
+	%endswitch
+%endfunction
 
 %% Function: BlockTypeSetup ==========================================================
 %%
@@ -87,23 +93,36 @@
 %%      Code generation for signal output
 %%
 %function Outputs(block, system) Output
-	pthread_mutex_lock(map_lock);
-	%switch (LibBlockParameterValue(block_type,0))
-		%case 1 //coil
+	pthread_mutex_lock(&map_lock);
+	%switch (%<block.ParamSettings.block_type>)
+		%case 1 %%coil
+			%if ::go_modbus_coils_num <= %<block.ParamSettings.address>
+				%<LibBlockReportError(block, "coil is out of address range")>
+			%endif
 			%<ReadMemoryBlock(block, "tab_bits")>
 			%break
-		%case 2 //discrete
+		%case 2 %%discrete
+			%if ::go_modbus_discrete_in_num <= %<block.ParamSettings.address>
+				%<LibBlockReportError(block, "discrete input is out of address range")>
+			%endif
 			%<ReadMemoryBlock(block, "tab_input_bits")>
 			%break
-		%case 3 //holding
+		%case 3 %%holding
+			%if ::go_modbus_holding_num <= %<block.ParamSettings.address>
+				%<LibBlockReportError(block, "holding register is out of address range")>
+			%endif
 			%<ReadMemoryBlock(block, "tab_input_registers")>
 			%break
-		%case 4 //input
+		%case 4 %%input
+			%if ::go_modbus_input_num <= %<block.ParamSettings.address>
+				%<LibBlockReportError(block, "input register is out of address range")>
+			%endif
 			%<ReadMemoryBlock(block, "tab_registers")>
 			%break
 		%default
 			%<LibBlockReportError(block, "Invalid memory block type!")>
-	pthread_mutex_unlock(map_lock);
+	%endswitch
+	pthread_mutex_unlock(&map_lock);
 %endfunction
 
 %% Function: Terminate ==========================================================
