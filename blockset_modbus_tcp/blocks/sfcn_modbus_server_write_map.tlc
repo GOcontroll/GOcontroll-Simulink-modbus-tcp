@@ -111,13 +111,13 @@
 			%if ::go_modbus_holding_num <= %<block.ParamSettings.address>
 				%<LibBlockReportError(block, "holding register is out of address range")>
 			%endif
-			%<ReadMemoryBlock(block, "tab_input_registers")>
+			%<ReadMemoryBlock(block, "tab_registers")>
 			%break
 		%case 4 %%input
 			%if ::go_modbus_input_num <= %<block.ParamSettings.address>
 				%<LibBlockReportError(block, "input register is out of address range")>
 			%endif
-			%<ReadMemoryBlock(block, "tab_registers")>
+			%<ReadMemoryBlock(block, "tab_input_registers")>
 			%break
 		%default
 			%<LibBlockReportError(block, "Invalid memory block type!")>

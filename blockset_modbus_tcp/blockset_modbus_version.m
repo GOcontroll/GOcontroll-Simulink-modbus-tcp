@@ -30,9 +30,13 @@
 
 function [version] = blockset_modbus_version()
 
-version = "Modbus v0.0.1";
+version = "Modbus v0.0.2";
 
-%% V0.0.1 Update 6-2-2024
+%% V0.0.2 Update 8-2-2024:
+%% fixed the holding and input registers being reversed in the tlcs
+%% tcp server component is now usable, only some minor usability improvements left for 1.0.0
+%%
+%% V0.0.1 Update 6-2-2024:
 %% first time actually running in a model, for some reason holding/input register do not seem to work properly yet,
 %% coils and discrete inputs do however seem to work.
 %% this version only supports a modbus tcp server functionality, hopefully other functions will be added later
