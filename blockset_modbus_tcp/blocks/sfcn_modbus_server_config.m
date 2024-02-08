@@ -147,14 +147,5 @@ function WriteRTW(block)
 	block.WriteRTWParam('string', 'holding_num', num2str(block.DialogPrm(holding_num).Data));
 	block.WriteRTWParam('string', 'input_addr', num2str(block.DialogPrm(input_addr).Data));
 	block.WriteRTWParam('string', 'input_num', num2str(block.DialogPrm(input_num).Data));
-	% block.WriteRTWParam('string', 'port', block.DialogPrm(port).Data);
-	% block.WriteRTWParam('string', 'coils_addr', block.DialogPrm(coils_addr).Data);
-	% block.WriteRTWParam('string', 'coils_num', block.DialogPrm(coils_num).Data);
-	% block.WriteRTWParam('string', 'discrete_in_addr', block.DialogPrm(discrete_in_addr).Data);
-	% block.WriteRTWParam('string', 'discrete_in_num', block.DialogPrm(discrete_in_num).Data);
-	% block.WriteRTWParam('string', 'holding_addr', block.DialogPrm(holding_addr).Data);
-	% block.WriteRTWParam('string', 'holding_num', block.DialogPrm(holding_num).Data);
-	% block.WriteRTWParam('string', 'input_addr', block.DialogPrm(input_addr).Data);
-	% block.WriteRTWParam('string', 'input_num', block.DialogPrm(input_num).Data);
 
 %%******************************* end of sfcn_modbus_server_config.m **********************
