@@ -61,7 +61,7 @@ function setup(block)
 
 	% Number of S-Function parameters expected
 
-	block.NumDialogPrms     = 9;
+	block.NumDialogPrms     = 10;
 	block.SampleTimes = [1 0];
 	%% -----------------------------------------------------------------
 	%% Register methods called at run-time
@@ -129,15 +129,17 @@ function Terminate(block)
 %endfunction
 
 function WriteRTW(block)
-	port = 1;
-	coils_addr = 2;
-	coils_num = 3;
-	discrete_in_addr = 4;
-	discrete_in_num = 5;
-	holding_addr = 6;
-	holding_num = 7;
-	input_addr = 8;
-	input_num = 9;
+	ip = 1;
+	port = 2;
+	coils_addr = 3;
+	coils_num = 4;
+	discrete_in_addr = 5;
+	discrete_in_num = 6;
+	holding_addr = 7;
+	holding_num = 8;
+	input_addr = 9;
+	input_num = 10;
+	block.WriteRTWParam('string', 'ip', sprintf('\"%s\"',block.DialogPrm(ip).Data));
 	block.WriteRTWParam('string', 'port', num2str(block.DialogPrm(port).Data));
 	block.WriteRTWParam('string', 'coils_addr', num2str(block.DialogPrm(coils_addr).Data));
 	block.WriteRTWParam('string', 'coils_num', num2str(block.DialogPrm(coils_num).Data));
