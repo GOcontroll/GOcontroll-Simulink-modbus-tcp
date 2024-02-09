@@ -33,63 +33,75 @@
 %implements sfcn_modbus_server_read_map "C"
 %include "modbus_common.tlc"
 
-%function CheckTabSize(block, tab_num, bytes, offset) void
-	%switch (%<tab_num>)
-		%case 1
-			%if ::go_modbus_coils_num < %<bytes> + %<offset>
-				%<LibBlockReportError(block, "This block is trying to read data from beyond the available range of coils, check your modbus configuration.")>
+%%This function checks if one of the read blocks is trying to access data outside of the allocated area that is configured in the server config block
+%%It gets calculated in bytes, so sometimes the number of registers needs to be multiplied by two, same goes for the offset.
+%%The number of bytes are calculated in the ReadMemoryBlock function.
+%function CheckTabSize(block, bytes, offset) void
+	%switch (%<block.ParamSettings.block_type>)
+		%case 1 %%Coil
+			%if ::go_modbus_coils_num < %<bytes> + %<offset> %%coils are bytes, so no doubling
+				%assign err = "there are %<::go_modbus_coils_num> coil registers defined in your config, but this block is trying to access a register out of this range"
+				%<LibBlockReportError(block, err)>
 			%endif
 			%break
-		%case 2
-			%if ::go_modbus_discrete_in_num < %<bytes> + %<offset>
-				%<LibBlockReportError(block, "This block is trying to read data from beyond the available range of discrete inputs, check your modbus configuration.")>
+		%case 2 %%Discrete input
+			%if ::go_modbus_discrete_in_num < %<bytes> + %<offset> %%discrete inputs are bytes, so no doubling
+				%assign err = "there are %<::go_modbus_discrete_in_num> discrete input registers defined in your config, but this block is trying to access a register out of this range"
+				%<LibBlockReportError(block, err)>
 			%endif
 			%break
-		%case 3
-			%if ::go_modbus_holding_num * 2 < %<bytes> + %<offset> * 2
-				%<LibBlockReportError(block, "This block is trying to read data from beyond the available range of holding registers, check your modbus configuration.")>
+		%case 3 %%Holding register
+			%if ::go_modbus_holding_num * 2 < %<bytes> + %<offset> * 2 %%holding registers are 16 bits so the number of registers and the offset need to be multiplied by 2
+				%assign err = "there are %<::go_modbus_holding_num> holding registers defined in your config, but this block is trying to access a register out of this range"
+				%<LibBlockReportError(block, err)>
 			%endif
 			%break
-		%case 4
-			%if ::go_modbus_input_num * 2 < %<bytes> + %<offset> * 2
-				%<LibBlockReportError(block, "This block is trying to read data from beyond the available range of input registers, check your modbus configuration.")>
+		%case 4 %%Input register
+			%if ::go_modbus_input_num * 2 < %<bytes> + %<offset> * 2 %%input registers are 16 bits so the number of registers and the offset need to be multiplied by 2
+				%assign err = "there are %<::go_modbus_input_num> input registers defined in your config, but this block is trying to access a register out of this range"
+				%<LibBlockReportError(block, err)>
 			%endif
 			%break
 		%default
-			%<LibBlockReportError(block, "Something very wacky is going on here, you shouldn't be able to get this error.")>
+			%<LibBlockReportError(block, "Invalid memory block type!")>
 	%endswitch
 %endfunction
 
-%function ReadMemoryBlock(block, tab, tab_num) Output
-	%assign address = %<block.ParamSettings.address>
-	%assign length = %<block.ParamSettings.length>
+%%This function actually expands to the memory read operation depending on the register type, data type, address offset, and length
+%function ReadMemoryBlock(block, tab) Output
+	%%assign these parameters so they can be passed to a function and to have more compact code
+	%assign offset = block.ParamSettings.address
+	%assign length = block.ParamSettings.length
+	%assign bit = block.ParamSettings.bit
+	%assign dest = LibBlockOutputSignalAddr(0, "", "", 0)
 	%switch (%<block.ParamSettings.data_type>)
 		%case 1 %%double
-			%<CheckTabSize(block, tab_num, length*8, address)>
-			memcpy(%<LibBlockOutputSignalAddr(0, "", "", 0)>, map->%<tab> + %<address>, %<length>*sizeof(double));
+			%<CheckTabSize(block, length*8, offset)>
+			memcpy(%<dest>, map->%<tab> + %<offset>, %<length>*sizeof(double));
 			%break
 		%case 2 %%single/float
-			%<CheckTabSize(block, tab_num, length*4, address)>
-			memcpy(%<LibBlockOutputSignalAddr(0, "", "", 0)>, map->%<tab> + %<address>, %<length>*sizeof(float));
+			%<CheckTabSize(block, length*4, offset)>
+			memcpy(%<dest>, map->%<tab> + %<offset>, %<length>*sizeof(float));
 			%break
 		%case 3 %%int8
 		%case 4 %%uint8
-			%<CheckTabSize(block, tab_num, length, address)>
-			memcpy(%<LibBlockOutputSignalAddr(0, "", "", 0)>, map->%<tab> + %<address>, %<length>*sizeof(char));
+			%<CheckTabSize(block, length, offset)>
+			memcpy(%<dest>, map->%<tab> + %<offset>, %<length>*sizeof(char));
 			%break
 		%case 5 %%int16
 		%case 6 %%uint16
-			%<CheckTabSize(block, tab_num, length*2, address)>
-			memcpy(%<LibBlockOutputSignalAddr(0, "", "", 0)>, map->%<tab> + %<address>, %<length>*sizeof(short));
+			%<CheckTabSize(block, length*2, offset)>
+			memcpy(%<dest>, map->%<tab> + %<offset>, %<length>*sizeof(short));
 			%break
 		%case 7 %%int32
 		%case 8 %%uint32
-			%<CheckTabSize(block, tab_num, length*4, address)>
-			memcpy(%<LibBlockOutputSignalAddr(0, "", "", 0)>, map->%<tab> + %<address>, %<length>*sizeof(int));
+			%<CheckTabSize(block, length*4, offset)>
+			memcpy(%<dest>, map->%<tab> + %<offset>, %<length>*sizeof(int));
 			%break
 		%case 9 %%boolean
-			%<CheckTabSize(block, tab_num, 1, address)>
-			%<LibBlockOutputSignal(0,"","",0)> = (map->%<tab>[%<address>] & (1 << %<block.ParamSettings.bit>)) > 0;
+			%<CheckTabSize(block, 1, offset)>
+			%%output = (table[offset] & (1 << bit)) > 0
+			%<LibBlockOutputSignal(0,"","",0)> = (map->%<tab>[%<offset>] & (1 << %<bit>)) > 0;
 			%break
 		%default
 			%<LibBlockReportError(block, "Invalid data type!")>
@@ -111,7 +123,7 @@
 %% Function: Start ==========================================================
 %%
 %% Purpose:
-%%      initialize the reconnect_state struct
+%%      initialize the system
 %%
 %function Start(block, system) Output
 	%if EXISTS(::go_modbus_server_config_present) == 0
@@ -125,19 +137,20 @@
 %%      Code generation for signal output
 %%
 %function Outputs(block, system) Output
+	%%modbus map is shared between threads, so lock it
 	pthread_mutex_lock(&map_lock);
 	%switch (%<block.ParamSettings.block_type>)
 		%case 1 %%coil
-			%<ReadMemoryBlock(block, "tab_bits", 1)>
+			%<ReadMemoryBlock(block, "tab_bits")>
 			%break
 		%case 2 %%discrete
-			%<ReadMemoryBlock(block, "tab_input_bits", 2)>
+			%<ReadMemoryBlock(block, "tab_input_bits")>
 			%break
 		%case 3 %%holding
-			%<ReadMemoryBlock(block, "tab_registers", 3)>
+			%<ReadMemoryBlock(block, "tab_registers")>
 			%break
 		%case 4 %%input
-			%<ReadMemoryBlock(block, "tab_input_registers", 4)>
+			%<ReadMemoryBlock(block, "tab_input_registers")>
 			%break
 		%default
 			%<LibBlockReportError(block, "Invalid memory block type!")>
@@ -148,7 +161,7 @@
 %% Function: Terminate ==========================================================
 %%
 %% Purpose:
-%%      Code generation for signal output
+%%      Code generation for system termination
 %%
 %function Terminate (block, system) Output
 %endfunction
