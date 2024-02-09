@@ -30,8 +30,12 @@
 
 function [version] = blockset_modbus_version()
 
-version = "Modbus v0.0.3";
+version = "Modbus v0.0.4";
 
+%% V0.0.4 Update 9-2-2024:
+%% improved read/write out of bounds errors, improved tlc code in general
+%% server ip is now configurable
+%%
 %% V0.0.3 Update 8-2-2024:
 %% added a error when the read or write block would go out of bounds of the available memory map
 %% prevents undefined behaviour and segfaults

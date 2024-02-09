@@ -139,7 +139,7 @@ function WriteRTW(block)
 	holding_num = 8;
 	input_addr = 9;
 	input_num = 10;
-	block.WriteRTWParam('string', 'ip', sprintf('\"%s\"',block.DialogPrm(ip).Data));
+	block.WriteRTWParam('string', 'ip', sprintf('\"%s\"',block.DialogPrm(ip).Data)); %%If you don't manually put the brackets around some types it breaks, for example on IP addresses. It doesn't like dots in the string.
 	block.WriteRTWParam('string', 'port', num2str(block.DialogPrm(port).Data));
 	block.WriteRTWParam('string', 'coils_addr', num2str(block.DialogPrm(coils_addr).Data));
 	block.WriteRTWParam('string', 'coils_num', num2str(block.DialogPrm(coils_num).Data));
