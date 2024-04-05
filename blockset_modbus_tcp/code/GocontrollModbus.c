@@ -50,7 +50,6 @@ void *modbus_thread(void *args) {
 }
 
 void start_modbus_thread(modbus_mapping_t* map, pthread_mutex_t *lock, char *ip,  int port) {
-	// pthread_mutex_init(lock,NULL);
 	args.ctx = modbus_new_tcp(ip, port);
 	args.map = map;
 	args.lock = lock;

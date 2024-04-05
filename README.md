@@ -1,11 +1,11 @@
 # GOcontroll-Simulink-modbus-tcp
 
-A Gocontroll-Simulink extension blockset for setting up a modbus tcp server
+A GOcontroll-Simulink extension blockset for setting up a modbus tcp server
 
 # Usage
 
 Create a project using the regular [GOcontroll-Simulink](https://github.com/GOcontroll/GOcontroll-Simulink) template.  
-Make a copy or a symbolic link of the blockset_gocontroll_modbus_tcp folder at the root level of this template so it is next to the regular blockset directory:
+Make a copy or a symbolic link of the blockset_modbus_tcp folder at the root level of this template so it is next to the regular blockset directory:
 ``` text
 .
 ├── blockset
