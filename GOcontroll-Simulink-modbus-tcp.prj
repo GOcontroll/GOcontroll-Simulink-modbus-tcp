@@ -1,11 +1,11 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp/GOcontroll-Simulink-modbus-tcp.prj" location="/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp" name="GOcontroll-Simulink-modbus-tcp" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="1081646109" file="/home/maud/Disk2/development/git/GOcontroll-Simulink-modbus-tcp/GOcontroll-Simulink-modbus-tcp2.prj" location="/home/maud/Disk2/development/git/GOcontroll-Simulink-modbus-tcp" name="GOcontroll-Simulink-modbus-tcp2" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>Modbus-Simulink</param.appname>
     <param.authnamewatermark>GOcontroll</param.authnamewatermark>
     <param.email>info@gocontroll.com</param.email>
     <param.company>GOcontroll B.V.</param.company>
-    <param.summary>A Simulink blockset (currently) for managing a modbus TCP server on a Linux based target.</param.summary>
-    <param.description>The current implementation only supports a Modbus TCP server configuration on</param.description>
+    <param.summary />
+    <param.description />
     <param.screenshot />
     <param.version>0.0.1</param.version>
     <param.output>${PROJECT_ROOT}/Modbus-Simulink.mltbx</param.output>
@@ -31,13 +31,14 @@
       <item>9.0</item>
     </param.products.version>
     <param.platforms />
-    <param.guid>292ad358-d04b-44c7-b3d7-cfe343dba167</param.guid>
+    <param.guid>272b4103-7699-484e-8fe8-acc98fb411e9</param.guid>
     <param.exclude.filters>.SimulinkProject
 _SimulinkProject
 *.prj
 **/.git
-.vscode
-GOcontroll-Simulink-modbus-tcp.prj</param.exclude.filters>
+GOcontroll-Simulink-modbus-tcp.prj
+GOcontroll-Simulink-modbus-tcp2.prj
+Modbus-Simulink.mltbx</param.exclude.filters>
     <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
     <param.examples />
     <param.demosxml />
@@ -55,13 +56,25 @@ GOcontroll-Simulink-modbus-tcp.prj</param.exclude.filters>
     <param.compatiblity.macos>true</param.compatiblity.macos>
     <param.compatiblity.linux>true</param.compatiblity.linux>
     <param.compatiblity.matlabonline>false</param.compatiblity.matlabonline>
-    <param.installation.map />
-    <param.additional.sw.names />
-    <param.additional.sw.licenses />
-    <param.additional.sw.win.url />
-    <param.additional.sw.mac.url />
-    <param.additional.sw.linux.url />
+    <param.installation.map>+GOcontroll_Simulink_modbus_tcp/getInstallationLocation.mlx</param.installation.map>
+    <param.additional.sw.names>
+      <item>libmodbus</item>
+    </param.additional.sw.names>
+    <param.additional.sw.licenses>
+      <item>https://github.com/stephane/libmodbus/blob/master/COPYING.LESSER</item>
+    </param.additional.sw.licenses>
+    <param.additional.sw.win.url>
+      <item>https://github.com/stephane/libmodbus/archive/refs/tags/v3.1.10.zip</item>
+    </param.additional.sw.win.url>
+    <param.additional.sw.mac.url>
+      <item>https://github.com/stephane/libmodbus/archive/refs/tags/v3.1.10.zip</item>
+    </param.additional.sw.mac.url>
+    <param.additional.sw.linux.url>
+      <item>https://github.com/stephane/libmodbus/archive/refs/tags/v3.1.10.zip</item>
+    </param.additional.sw.linux.url>
     <unset>
+      <param.summary />
+      <param.description />
       <param.screenshot />
       <param.output />
       <param.platforms />
@@ -79,17 +92,12 @@ GOcontroll-Simulink-modbus-tcp.prj</param.exclude.filters>
       <param.compatiblity.windows />
       <param.compatiblity.macos />
       <param.compatiblity.linux />
-      <param.installation.map />
-      <param.additional.sw.names />
-      <param.additional.sw.licenses />
-      <param.additional.sw.win.url />
-      <param.additional.sw.mac.url />
-      <param.additional.sw.linux.url />
     </unset>
     <fileset.rootdir>
-      <file>/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp</file>
+      <file>/home/maud/Disk2/development/git/GOcontroll-Simulink-modbus-tcp</file>
     </fileset.rootdir>
     <fileset.rootfiles>
+      <file>${PROJECT_ROOT}/+GOcontroll_Simulink_modbus_tcp</file>
       <file>${PROJECT_ROOT}/LICENSE</file>
       <file>${PROJECT_ROOT}/README.md</file>
       <file>${PROJECT_ROOT}/blockset_modbus_tcp</file>
@@ -99,7 +107,7 @@ GOcontroll-Simulink-modbus-tcp.prj</param.exclude.filters>
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp" name="Modbus-Simulink.mltbx" optional="false">/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp/Modbus-Simulink.mltbx</file>
+      <file location="/home/maud/Disk2/development/git/GOcontroll-Simulink-modbus-tcp" name="Modbus-Simulink.mltbx" optional="false">/home/maud/Disk2/development/git/GOcontroll-Simulink-modbus-tcp/Modbus-Simulink.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>

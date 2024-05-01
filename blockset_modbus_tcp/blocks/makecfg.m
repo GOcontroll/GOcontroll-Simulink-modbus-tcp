@@ -9,7 +9,7 @@ function makecfg(objBuildInfo)
 	lib_path = fullfile(path, '..', 'lib', 'libmodbus');
 	src_path = fullfile(path, '..', 'code');
 	addIncludePaths(objBuildInfo, {lib_path, src_path});
-	addLinkObjects(objBuildInfo, fullfile(path, '..', 'lib', 'libmodbus','libmodbus.so.5'), '', 1000, true, true);
+	addLinkObjects(objBuildInfo, fullfile(lib_path,'libmodbus.so.5'), lib_path);
 	addSourcePaths(objBuildInfo, src_path);
 	addSourceFiles(objBuildInfo, 'GocontrollModbus.c', src_path);
 end
