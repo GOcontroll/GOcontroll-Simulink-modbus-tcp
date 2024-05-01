@@ -1,0 +1,1717 @@
+Library {
+  Name			  "GOcontroll_Modbus"
+  Version		  9.2
+  SavedCharacterEncoding  "UTF-8"
+  WebScopes_FoundationPlugin "on"
+  DiagnosticSuppressor	  "on"
+  LogicAnalyzerPlugin	  "on"
+  NotesPlugin		  "on"
+  SLCCPlugin		  "on"
+  LibraryType		  "BlockLibrary"
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  FPTRunName		  "Run 1"
+  MaxMDLFileLineLength	  120
+  LastSavedArchitecture	  "glnxa64"
+  Object {
+    $PropName		    "BdWindowsInfo"
+    $ObjectID		    1
+    $ClassName		    "Simulink.BDWindowsInfo"
+    Object {
+      $PropName		      "WindowsInfo"
+      $ObjectID		      2
+      $ClassName	      "Simulink.WindowInfo"
+      IsActive		      [1]
+      Location		      [8.0, 35.0, 3768.0, 2160.0]
+      Object {
+	$PropName		"ModelBrowserInfo"
+	$ObjectID		3
+	$ClassName		"Simulink.ModelBrowserInfo"
+	Visible			[1]
+	DockPosition		"Left"
+	Width			[50]
+	Height			[50]
+	Filter			[59]
+      }
+      Object {
+	$PropName		"ExplorerBarInfo"
+	$ObjectID		4
+	$ClassName		"Simulink.ExplorerBarInfo"
+	Visible			[1]
+      }
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"4051"
+	Extents			[3535.0, 1981.0]
+	ZoomFactor		[5.0]
+	Offset			[159.41428571428605, 297.74761904761874]
+      }
+      Object {
+	$PropName		"DockComponentsInfo"
+	$ObjectID		6
+	$ClassName		"Simulink.DockComponentInfo"
+	Type			"GLUE2:PropertyInspector"
+	ID			"Property Inspector"
+	Visible			[0]
+	CreateCallback		""
+	UserData		""
+	Floating		[0]
+	DockPosition		"Right"
+	Width			[640]
+	Height			[480]
+      }
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAH/PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOQAAB/wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
+      "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAA31AAAH/AAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
+    }
+  }
+  HideAutomaticNames	  off
+  Created		  "Tue Sep 22 13:41:27 2009"
+  Creator		  "HANcoder"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "maud"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Tue Apr 30 16:16:16 2024"
+  RTWModifiedTimeStamp	  631450757
+  ModifiedHistory	  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nla_obwlf -- Thu Sep 01 12:12:55 2016 -- Version 0.33\n\n\n\n\n"
+  "\n\nla_obwlf -- Thu Sep 01 09:23:34 2016 -- Version 0.33\nchanged the version in the Base Sample Time block\n\n\n\nl"
+  "a_obwlf -- Tue Aug 30 15:48:17 2016 -- Version 0.33\n\n\n\n\n\n"
+  ModelVersionFormat	  "0.33"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "all"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowAllPropagatedSignalLabels	off
+  PortDataTypeDisplayFormat "AliasTypeOnly"
+  ShowEditTimeErrors	  on
+  ShowEditTimeWarnings	  on
+  ShowEditTimeAdvisorChecks off
+  ShowPortUnits		  off
+  ShowDesignRanges	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  VariantCondition	  off
+  ShowSubsystemDomainSpec off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  ShowVisualizeInsertedRTB on
+  ShowMarkup		  on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	on
+  BlockVariantConditionDataTip off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks on
+  FunctionConnectors	  off
+  BrowserLookUnderMasks	  on
+  MultiThreadCoSim	  on
+  SimulationMode	  "normal"
+  VisualizeLoggedSignalsWhenLoggingToFile off
+  PauseTimes		  "5"
+  NumberOfSteps		  1
+  SnapshotBufferSize	  10
+  SnapshotInterval	  10
+  NumberOfLastSnapshots	  0
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  OrderedModelArguments	  on
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      7
+      Version		      "1.18.1"
+      DisabledProps	      []
+      Description	      ""
+      Array {
+	Type			"Handle"
+	Dimension		10
+	Simulink.SolverCC {
+	  $ObjectID		  8
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  ""
+	  StartTime		  "0.0"
+	  StopTime		  "10.0"
+	  AbsTol		  "auto"
+	  AutoScaleAbsTol	  on
+	  FixedStep		  "auto"
+	  InitialStep		  "auto"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  EnableMultiTasking	  on
+	  ConcurrentTasks	  off
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverInfoToggleStatus  off
+	  IsAutoAppliedInSIP	  off
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	  SampleTimeProperty	  []
+	  DecoupledContinuousIntegration off
+	  MinimalZcImpactIntegration off
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  9
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  ""
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  VisualizeSimOutput	  on
+	  StreamToWorkspace	  off
+	  StreamVariableName	  "streamout"
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	  LoggingToFile		  off
+	  DatasetSignalFormat	  "timeseries"
+	  LoggingFileName	  "out.mat"
+	  LoggingIntervals	  "[-inf, inf]"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  10
+	  Version		  "1.18.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    8
+	    Cell		    "ZeroExternalMemoryAtStartup"
+	    Cell		    "ZeroInternalMemoryAtStartup"
+	    Cell		    "OptimizeModelRefInitCode"
+	    Cell		    "NoFixptDivByZeroProtection"
+	    Cell		    "BooleansAsBitfields"
+	    Cell		    "PassReuseOutputArgsAs"
+	    Cell		    "PassReuseOutputArgsThreshold"
+	    Cell		    "UseSpecifiedMinMax"
+	    PropName		    "DisabledProps"
+	  }
+	  Description		  ""
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  DefaultParameterBehavior "Tunable"
+	  UseDivisionForNetSlopeComputation "off"
+	  UseFloatMulNetSlope	  off
+	  DefaultUnderspecifiedDataType	"double"
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  CachingGlobalReferences off
+	  GlobalBufferReuse	  on
+	  StrengthReduction	  off
+	  AdvancedOptControl	  ""
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  PassReuseOutputArgsThreshold 12
+	  ExpressionDepthLimit	  2147483647
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  ActiveStateOutputEnumStorageType "Native Integer"
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "off"
+	  AccelVerboseBuild	  off
+	  OptimizeBlockOrder	  "off"
+	  OptimizeDataStoreBuffers on
+	  BusAssignmentInplaceUpdate on
+	  DifferentSizesBufferReuse off
+	  OptimizationLevel	  "level2"
+	  OptimizationPriority	  "Balanced"
+	  OptimizationCustomize	  on
+	  UseRowMajorAlgorithm	  off
+	  LabelGuidedReuse	  off
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  11
+	  Version		  "1.18.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "UseOnlyExistingSharedCode"
+	    PropName		    "DisabledProps"
+	  }
+	  Description		  ""
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  StringTruncationChecking "error"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  ExportedTasksRateTransMsg "none"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "warning"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  UseOnlyExistingSharedCode "error"
+	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "error"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  AllowSymbolicDim	  on
+	  RowMajorDimensionSupport off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  ChecksumConsistencyForSSReuse	"none"
+	  LibraryContextMissingDiagnostic "warning"
+	  MatchCodeGenerationContextForUpdateDiagram "none"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "ErrorLevel1"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  SymbolicDimMinMaxWarning "warning"
+	  LossOfSymbolicDimsSimulationWarning "warning"
+	  LossOfSymbolicDimsCodeGenerationWarning "error"
+	  SymbolicDimsDataTypeCodeGenerationDiagnostic "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnreachableExecutionPathDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
+	  SFOutputUsedAsStateInMooreChartDiag "error"
+	  SFTemporalDelaySmallerThanSampleTimeDiag "warning"
+	  SFSelfTransitionDiag	  "warning"
+	  SFExecutionAtInitializationDiag "none"
+	  SFMachineParentedDataDiag "warning"
+	  IntegerSaturationMsg	  "warning"
+	  AllowedUnitSystems	  "all"
+	  UnitsInconsistencyMsg	  "warning"
+	  AllowAutomaticUnitConversions	on
+	  RCSCRenamedMsg	  "warning"
+	  RCSCObservableMsg	  "warning"
+	  ForceCombineOutputUpdateInSim	off
+	  UnitDatabase		  ""
+	  UnderSpecifiedDimensionMsg "none"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  12
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  ""
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdBitPerSizeT	  32
+	  ProdBitPerPtrDiffT	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetBitPerSizeT	  32
+	  TargetBitPerPtrDiffT	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	  UseEmbeddedCoderFeatures on
+	  UseSimulinkCoderFeatures on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  13
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  ""
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  EnableRefExpFcnMdlSchedulingChecks on
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelDependencies	  ""
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  14
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  ""
+	  SimCustomSourceCode	  ""
+	  SimCustomHeaderCode	  ""
+	  SimCustomInitializer	  ""
+	  SimCustomTerminator	  ""
+	  SimReservedNameArray	  []
+	  SimUserSources	  ""
+	  SimUserIncludeDirs	  ""
+	  SimUserLibraries	  ""
+	  SimUserDefines	  ""
+	  SimCustomCompilerFlags  ""
+	  SimCustomLinkerFlags	  ""
+	  SFSimEcho		  on
+	  SimCtrlC		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimAnalyzeCustomCode	  off
+	  SimBuildMode		  "sf_incremental_build"
+	  SimGenImportedTypeDefs  off
+	  ModelFunctionsGlobalVisibility "on"
+	  CompileTimeRecursionLimit 50
+	  EnableRuntimeRecursion  on
+	  MATLABDynamicMemAlloc	  on
+	  MATLABDynamicMemAllocThreshold 65536
+	  CustomCodeFunctionArrayLayout	[]
+	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  15
+	  Version		  "1.18.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    16
+	    Cell		    "IncludeHyperlinkInReport"
+	    Cell		    "GenerateTraceInfo"
+	    Cell		    "GenerateTraceReport"
+	    Cell		    "GenerateTraceReportSl"
+	    Cell		    "GenerateTraceReportSf"
+	    Cell		    "GenerateTraceReportEml"
+	    Cell		    "PortableWordSizes"
+	    Cell		    "GenerateWebview"
+	    Cell		    "GenerateCodeMetricsReport"
+	    Cell		    "GenerateCodeReplacementReport"
+	    Cell		    "GenerateMissedCodeReplacementReport"
+	    Cell		    "GenerateErtSFunction"
+	    Cell		    "CreateSILPILBlock"
+	    Cell		    "CodeExecutionProfiling"
+	    Cell		    "CodeProfilingSaveOptions"
+	    Cell		    "CodeProfilingInstrumentation"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "grt.tlc"
+	  HardwareBoard		  "None"
+	  TLCOptions		  ""
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
+	  TemplateMakefile	  "grt_default_tmf"
+	  PostCodeGenCommand	  ""
+	  Description		  ""
+	  GenerateReport	  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  RTWBuildHooks		  []
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomDefine		  ""
+	  CustomBLASCallback	  ""
+	  CustomLAPACKCallback	  ""
+	  CustomFFTCallback	  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
+	  Toolchain		  "Automatically locate an installed toolchain"
+	  BuildConfiguration	  "Faster Builds"
+	  CustomToolchainOptions  []
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  PortableWordSizes	  off
+	  CreateSILPILBlock	  "None"
+	  CodeExecutionProfiling  off
+	  CodeExecutionProfileVariable "executionProfile"
+	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingInstrumentation "off"
+	  SILDebugging		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateWebview	  off
+	  GenerateCodeMetricsReport off
+	  GenerateCodeReplacementReport	off
+	  GenerateMissedCodeReplacementReport off
+	  RTWCompilerOptimization "off"
+	  ObjectivePriorities	  []
+	  RTWCustomCompilerOptimizations ""
+	  CheckMdlBeforeBuild	  "Off"
+	  SharedConstantsCachingThreshold 1024
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      16
+	      Version		      "1.18.1"
+	      Array {
+		Type			"Cell"
+		Dimension		28
+		Cell			"IgnoreCustomStorageClasses"
+		Cell			"IgnoreTestpoints"
+		Cell			"InsertBlockDesc"
+		Cell			"SFDataObjDesc"
+		Cell			"SimulinkDataObjDesc"
+		Cell			"DefineNamingRule"
+		Cell			"SignalNamingRule"
+		Cell			"ParamNamingRule"
+		Cell			"InlinedPrmAccess"
+		Cell			"CustomSymbolStr"
+		Cell			"CustomSymbolStrGlobalVar"
+		Cell			"CustomSymbolStrType"
+		Cell			"CustomSymbolStrField"
+		Cell			"CustomSymbolStrFcn"
+		Cell			"CustomSymbolStrBlkIO"
+		Cell			"CustomSymbolStrTmpVar"
+		Cell			"CustomSymbolStrMacro"
+		Cell			"InsertPolySpaceComments"
+		Cell			"MATLABFcnDesc"
+		Cell			"InternalIdentifier"
+		Cell			"CustomSymbolStrModelFcn"
+		Cell			"CustomSymbolStrFcnArg"
+		Cell			"CustomSymbolStrUtil"
+		Cell			"CustomSymbolStrEmxType"
+		Cell			"CustomSymbolStrEmxFcn"
+		Cell			"CustomUserTokenString"
+		Cell			"ReqsInCode"
+		Cell			"BlockCommentType"
+		PropName		"DisabledProps"
+	      }
+	      Description	      ""
+	      Comment		      ""
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      CommentStyle	      "Auto"
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      OperatorAnnotations     off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      MangleLength	      1
+	      SharedChecksumLength    8
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M_T"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrModelFcn "$R$N"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      CustomSymbolStrUtil     "$N$C"
+	      CustomSymbolStrEmxType  "emxArray_$M$N"
+	      CustomSymbolStrEmxFcn   "emx$M$N"
+	      CustomUserTokenString   ""
+	      CustomCommentsFcn	      ""
+	      DefineNamingRule	      "None"
+	      DefineNamingFcn	      ""
+	      ParamNamingRule	      "None"
+	      ParamNamingFcn	      ""
+	      SignalNamingRule	      "None"
+	      SignalNamingFcn	      ""
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      BlockCommentType	      "BlockPathComment"
+	      StateflowObjectComments on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InternalIdentifierFile  ""
+	      InternalIdentifier      "Shortened"
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	      ReservedNameArray	      []
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      17
+	      Version		      "1.18.1"
+	      Array {
+		Type			"Cell"
+		Dimension		18
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"RemoveResetFunc"
+		Cell			"SuppressErrorStatus"
+		Cell			"ERTCustomFileBanners"
+		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateTestInterfaces"
+		Cell			"ModelStepFunctionPrototypeControlCompliant"
+		Cell			"CPPClassGenCompliant"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"PurelyIntegerCode"
+		Cell			"PortableWordSizes"
+		Cell			"SupportComplex"
+		Cell			"SupportAbsoluteTime"
+		Cell			"SupportContinuousTime"
+		Cell			"GenerateAllocFcn"
+		Cell			"ExistingSharedCode"
+		Cell			"RemoveDisableFunc"
+		Cell			"PreserveStateflowLocalDataDimensions"
+		PropName		"DisabledProps"
+	      }
+	      Description	      ""
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      GenFloatMathFcnCalls    "NOT IN USE"
+	      TargetLangStandard      "C89/C90 (ANSI)"
+	      CodeReplacementLibrary  "None"
+	      UtilityFuncGeneration   "Auto"
+	      MultiwordTypeDef	      "System defined"
+	      MultiwordLength	      2048
+	      DynamicStringBufferSize 256
+	      GenerateFullHeader      on
+	      InferredTypesCompatibility off
+	      ExistingSharedCode      ""
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      ConcurrentExecutionCompliant on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Disable all"
+	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
+	      GroupInternalDataByFunction off
+	      SuppressErrorStatus     off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
+	      CodeInterfacePackaging  "Nonreusable function"
+	      PurelyIntegerCode	      off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      RemoveDisableFunc	      off
+	      RemoveResetFunc	      off
+	      SupportVariableSizeSignals off
+	      ParenthesesLevel	      "Nominal"
+	      CastingMode	      "Nominal"
+	      PreserveStateflowLocalDataDimensions off
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    on
+	      AutosarCompliant	      off
+	      MDXCompliant	      off
+	      GRTInterface	      on
+	      GenerateAllocFcn	      off
+	      UseToolchainInfoCompliant	on
+	      GenerateSharedConstants on
+	      CoderGroups	      []
+	      AccessMethods	      []
+	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
+	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
+	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
+	      ArrayLayout	      "Column-major"
+	      UnsupportedSFcnMsg      "error"
+	      ERTHeaderFileRootName   "$R$E"
+	      ERTSourceFileRootName   "$R$E"
+	      ERTDataFileRootName     "$R_data"
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeMexArgs	      ""
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      RTWCAPIRootIO	      off
+	      GenerateASAP2	      off
+	      MultiInstanceErrorCode  "Error"
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	SlCovCC.ConfigComp {
+	  $ObjectID		  18
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  "Simulink Coverage Configuration Component"
+	  Name			  "Simulink Coverage"
+	  CovEnable		  off
+	  CovScope		  "EntireSystem"
+	  CovIncludeTopModel	  on
+	  RecordCoverage	  off
+	  CovPath		  "/"
+	  CovSaveName		  "covdata"
+	  CovCompData		  ""
+	  CovMetricSettings	  "dw"
+	  CovFilter		  ""
+	  CovHTMLOptions	  ""
+	  CovNameIncrementing	  off
+	  CovHtmlReporting	  on
+	  CovForceBlockReductionOff on
+	  CovEnableCumulative	  on
+	  CovSaveCumulativeToWorkspaceVar on
+	  CovSaveSingleToWorkspaceVar on
+	  CovCumulativeVarName	  "covCumulativeData"
+	  CovCumulativeReport	  off
+	  CovSaveOutputData	  on
+	  CovOutputDir		  "slcov_output/$ModelName$"
+	  CovDataFileName	  "$ModelName$_cvdata"
+	  CovShowResultsExplorer  on
+	  CovReportOnPause	  on
+	  CovModelRefEnable	  "off"
+	  CovModelRefExcluded	  ""
+	  CovExternalEMLEnable	  off
+	  CovSFcnEnable		  off
+	  CovBoundaryAbsTol	  1e-05
+	  CovBoundaryRelTol	  0.01
+	  CovUseTimeInterval	  off
+	  CovStartTime		  0
+	  CovStopTime		  0
+	  CovMcdcMode		  "Masking"
+	}
+	hdlcoderui.hdlcc {
+	  $ObjectID		  19
+	  Version		  "1.18.1"
+	  DisabledProps		  []
+	  Description		  "HDL Coder custom configuration component"
+	  Name			  "HDL Coder"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    " "
+	    PropName		    "HDLConfigFile"
+	  }
+	  HDLCActiveTab		  "0"
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      ExtraOptions	      ""
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition    [ 200, 85, 1080, 715 ]
+    }
+    PropName		    "ConfigurationSets"
+  }
+  ExplicitPartitioning	  off
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    HideAutomaticName	    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    MarkupType		    "model"
+    UseDisplayTextAsClickCallback off
+    AnnotationType	    "note_annotation"
+    FixedHeight		    off
+    FixedWidth		    off
+    Interpreter		    "off"
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  MaskDefaults {
+    SelfModifiable	    "off"
+    IconFrame		    "on"
+    IconOpaque		    "opaque"
+    RunInitForIconRedraw    "analyze"
+    IconRotate		    "none"
+    PortRotate		    "default"
+    IconUnits		    "autoscale"
+  }
+  MaskParameterDefaults {
+    Evaluate		    "on"
+    Tunable		    "on"
+    NeverSave		    "off"
+    Internal		    "off"
+    ReadOnly		    "off"
+    Enabled		    "on"
+    Visible		    "on"
+    ToolTip		    "on"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      M-S-Function
+      FunctionName	      "matlabfile"
+      DisplayMFileStacktrace  on
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      SystemSampleTime	      "-1"
+      RTWSystemCode	      "Auto"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      Opaque		      off
+      MaskHideContents	      off
+      SFBlockType	      "NONE"
+      VariantControlMode      "Expression"
+      Variant		      off
+      GeneratePreprocessorConditionals off
+      AllowZeroVariantControls off
+      PropagateVariantConditions off
+      TreatAsGroupedWhenPropagatingVariantConditions on
+      ContentPreviewEnabled   off
+      IsWebBlock	      off
+      IsObserver	      off
+      Latency		      "0"
+      AutoFrameSizeCalculation off
+      IsWebBlockPanel	      off
+    }
+  }
+  System {
+    Name		    "GOcontroll_Modbus"
+    Location		    [1435, 404, 3184, 1901]
+    Open		    off
+    PortBlocksUseCompactNotation off
+    SetExecutionDomain	    off
+    ExecutionDomainType	    "Deduce"
+    ModelBrowserVisibility  on
+    ModelBrowserWidth	    273
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "500"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "4065"
+    Block {
+      BlockType		      SubSystem
+      Name		      "TCP"
+      SID		      "4051"
+      Ports		      []
+      Position		      [-330, -471, -230, -429]
+      ZOrder		      12
+      BackgroundColor	      "[1.000000, 0.666667, 0.000000]"
+      UserDataPersistent      on
+      RequestExecContextInheritance off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		20
+	$ClassName		"Simulink.Mask"
+	Display			"fprintf('TCP');"
+	RunInitForIconRedraw	"on"
+	IconUnits		"pixels"
+      }
+      System {
+	Name			"TCP"
+	Location		[8, 35, 3776, 2195]
+	Open			on
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"500"
+	Block {
+	  BlockType		  M-S-Function
+	  Name			  "modbus tcp read from map"
+	  SID			  "4064"
+	  Ports			  [0, 1]
+	  Position		  [510, 483, 645, 537]
+	  ZOrder		  54
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  List {
+	    ListType		    RTWdata
+	    block_type		    "1"
+	    data_type		    "1"
+	    address		    "0"
+	    length		    "1"
+	    bit			    "0"
+	  }
+	  FunctionName		  "sfcn_modbus_server_read_map"
+	  Parameters		  "tsamp,address,block_type,data_type,bit,length"
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    21
+	    $ClassName		    "Simulink.Mask"
+	    Type		    "Modbus TCP read from map"
+	    Description		    "This block is used to read some value(s) from the modbus data map."
+	    Help		    "<h1>Type of register</h1>\n<p>The coils and discrete inputs work in the context of a byte array.</p>\n"
+	    "<p>So offset 0 reads data from the first byte and on, while offset one reads data from the second byte and one, a"
+	    "nd so on.</p>\n<br>\n<p>Holding and input registers are based on 16 bit values.</p>\n<p>So offset 0 starts readin"
+	    "g from the start of the map, but offset 1 starts reading 16 bits in.</p>\n<p>This means that if you are reading m"
+	    "ultiple 8 bit values in a row, the first two bytes will both come from the the first register, and the next two f"
+	    "rom the second register and so on.</p>\n<br>\n<h1>Data type:</h1>\n<p>The data type determines how much you read "
+	    "from the map, so a boolean will read 1 bit,</p>\n<p>a int8 or uint8 will read half a register, a int16 or uint6 r"
+	    "eads a full register,</p>\n<p>a int32, uint32 or single reads two registers in one go and a double reads four reg"
+	    "isters in one go.</p>\n<br>\n<h1>Number of elements to read:</h1>\n<p>These values are multiplied when increasing"
+	    " the number of elements read from the map.</p>\n<p>So reading 2 int8 or uint8 values reads one full register, and"
+	    " not two different registers!</p>\n<br>\n<h1>Offset from the base address</h1>\n<p>This value determines where it"
+	    " will start reading from the map.</p>\n<p>As previously mentioned, in the case of coils and discrete inputs, this"
+	    " goes up in bytes,</p>\n<p>while holding and input registers increase by 16 bits for every increment to the offse"
+	    "t</p>"
+	    Initialization	    "block_type_str = '';\nswitch (block_type)\n    case 1\n        block_type_str = 'Coil';\n    "
+	    "    if bit < 0 || bit > 7\n            error(\"bit number must be between 0 and 7\");\n        end\n    case 2\n "
+	    "       block_type_str = 'Discrete input';\n        if bit < 0 || bit > 7\n            error(\"bit number must be "
+	    "between 0 and 7\");\n        end\n    case 3\n        block_type_str = 'Holding register';\n        if bit < 0 ||"
+	    " bit > 15\n            error(\"bit number must be between 0 and 15\");\n        end\n    case 4\n        block_ty"
+	    "pe_str = 'Input register';\n        if bit < 0 || bit > 15\n            error(\"bit number must be between 0 and "
+	    "15\");\n        end\nend\n\nif length < 1\n    error(\"number of elements to read can't be less than 1\");\nend\n"
+	    "\nif address < 0\n    error(\"offset from base address can't be less than 0\");\nend\n\nmodelRTWFields = struct('"
+	    "block_type', int2str(block_type), 'data_type', int2str(data_type), 'address', int2str(address), ...\n            "
+	    "                                                            'length', int2str(length),'bit', int2str(bit));\n\n% "
+	    "Insert modelRTWFields in the I/O block S-Function containing the Tag starting with 'HANcoder_TARGET_'\nHANcoder_T"
+	    "ARGET_DataBlock = find_system(gcb, 'RegExp', 'on', 'FollowLinks', 'on', 'LookUnderMasks', 'all', 'BlockType', 'M-"
+	    "S-Function');\nset_param(HANcoder_TARGET_DataBlock{1}, 'RTWdata', modelRTWFields);\n\n"
+	    Display		    "fprintf(\"Modbus TCP Server\\n read from %s\",block_type_str);\n\ntext(2,6,blockset_modbus_version());\n"
+	    RunInitForIconRedraw    "on"
+	    IconUnits		    "pixels"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      6
+	      Object {
+		$ObjectID		22
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
+		  Dimension		  4
+		  Cell			  "Coil"
+		  Cell			  "Discrete input"
+		  Cell			  "Holding register"
+		  Cell			  "Input register"
+		  PropName		  "TypeOptions"
+		}
+		Name			"block_type"
+		Prompt			"Type of register to read"
+		Value			"Coil"
+	      }
+	      Object {
+		$ObjectID		23
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
+		  Dimension		  9
+		  Cell			  "double"
+		  Cell			  "single"
+		  Cell			  "int8"
+		  Cell			  "uint8"
+		  Cell			  "int16"
+		  Cell			  "uint16"
+		  Cell			  "int32"
+		  Cell			  "uint32"
+		  Cell			  "boolean"
+		  PropName		  "TypeOptions"
+		}
+		Name			"data_type"
+		Prompt			"Data type"
+		Value			"double"
+		Callback		"type = get_param(gcb, 'data_type');\nswitch (type)\n    case 'boolean'\n        set_param(gcb, 'MaskVisib"
+		"ilities', {'on','on','on','off','on','on'});\n    otherwise\n        set_param(gcb, 'MaskVisibilities', {'on','on','"
+		"on','on','off','on'});\nend\nclear type\n"
+	      }
+	      Object {
+		$ObjectID		24
+		Type			"edit"
+		Name			"address"
+		Prompt			"Offset from base address"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		25
+		Type			"edit"
+		Name			"length"
+		Prompt			"Number of elements to read"
+		Value			"1"
+	      }
+	      Object {
+		$ObjectID		26
+		Type			"edit"
+		Name			"bit"
+		Prompt			"Bit number"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		27
+		Type			"edit"
+		Name			"tsamp"
+		Prompt			"Sample time"
+		Value			"0.1"
+	      }
+	      PropName		      "Parameters"
+	    }
+	    Array {
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
+	      Object {
+		$ObjectID		28
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  29
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		30
+		Prompt			"Simulink:studio:ToolBarParametersMenu"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  6
+		  Object {
+		    $ObjectID		    31
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "block_type"
+		  }
+		  Object {
+		    $ObjectID		    32
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "data_type"
+		  }
+		  Object {
+		    $ObjectID		    33
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "address"
+		  }
+		  Object {
+		    $ObjectID		    34
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "length"
+		  }
+		  Object {
+		    $ObjectID		    35
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "bit"
+		  }
+		  Object {
+		    $ObjectID		    36
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "tsamp"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterGroupVar"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  M-S-Function
+	  Name			  "modbus tcp server config"
+	  SID			  "4063"
+	  Ports			  []
+	  Position		  [490, 399, 660, 451]
+	  ZOrder		  53
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  List {
+	    ListType		    RTWdata
+	    port		    "503"
+	    ip			    "0.0.0.0"
+	    coils_num		    "0"
+	    coils_addr		    "0"
+	    discrete_in_num	    "0"
+	    discrete_in_addr	    "0"
+	    holding_num		    "0"
+	    holding_addr	    "0"
+	    input_num		    "0"
+	    input_addr		    "0"
+	  }
+	  FunctionName		  "sfcn_modbus_server_config"
+	  Parameters		  "ip,port,coils_addr,coils_num,discrete_in_addr,discrete_in_num,holding_addr,holding_num,input_addr,in"
+	  "put_num"
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    37
+	    $ClassName		    "Simulink.Mask"
+	    Type		    "Modbus TCP server configuration"
+	    Description		    "This block is used to configure your Modbus TCP server.\nYou can configure the port of the serv"
+	    "er and the data map."
+	    Initialization	    "if port < intmin('uint16') || port > intmax('uint16') || mod(port,1) > 0\n    error(\"port mu"
+	    "st be a number between 0 and 65536 (unsigned 16 bit integer)\");\nend\n\nif coils_num < intmin('uint16') || coils"
+	    "_num > intmax('uint16') || mod(coils_num, 1) > 0\n    error(\"the number of coil registers must be between 0 and "
+	    "65535 (unsigned 16 bit integer)\");\nend\n\nif discrete_in_num < intmin('uint16') || discrete_in_num > intmax('ui"
+	    "nt16') || mod(discrete_in_num,1) > 0\n    error(\"the number of coil registers must be between 0 and 65535 (unsig"
+	    "ned 16 bit integer)\");\nend\n\nif holding_num < intmin('uint16') || holding_num > intmax('uint16') || mod(holdin"
+	    "g_num,1) > 0\n    error(\"the number of coil registers must be between 0 and 65535 (unsigned 16 bit integer)\");\n"
+	    "end\n\nif input_num < intmin('uint16') || input_num > intmax('uint16') || mod(input_num,1) > 0\n    error(\"the n"
+	    "umber of coil registers must be between 0 and 65535 (unsigned 16 bit integer)\");\nend\n\nmodelRTWFields = struct"
+	    "('port', num2str(port), 'ip', ip, ...\n'coils_num', num2str(coils_num), 'coils_addr', num2str(coils_addr), ...\n'"
+	    "discrete_in_num', num2str(discrete_in_num), 'discrete_in_addr', num2str(discrete_in_addr), ...\n'holding_num', nu"
+	    "m2str(holding_num), 'holding_addr', num2str(holding_addr), ... \n'input_num', num2str(input_num), 'input_addr', n"
+	    "um2str(input_addr));\n\n% Insert modelRTWFields in the I/O block S-Function containing the Tag starting with 'HAN"
+	    "coder_TARGET_'\nHANcoder_TARGET_DataBlock = find_system(gcb, 'RegExp', 'on', 'FollowLinks', 'on', 'LookUnderMasks"
+	    "', 'all', 'BlockType', 'M-S-Function');\nset_param(HANcoder_TARGET_DataBlock{1}, 'RTWdata', modelRTWFields);"
+	    Display		    "fprintf(\"Modbus TCP Server Configuration\\nIP: %s\\nPort: %d\",ip, port);\n\ntext(2,6,blockset_mod"
+	    "bus_version());"
+	    RunInitForIconRedraw    "on"
+	    IconUnits		    "pixels"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      10
+	      Object {
+		$ObjectID		38
+		Type			"edit"
+		Name			"ip"
+		Prompt			"Server ip"
+		Value			"'0.0.0.0'"
+	      }
+	      Object {
+		$ObjectID		39
+		Type			"edit"
+		Name			"port"
+		Prompt			"Server port"
+		Value			"503"
+	      }
+	      Object {
+		$ObjectID		40
+		Type			"edit"
+		Name			"coils_addr"
+		Prompt			"Coils start address"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		41
+		Type			"edit"
+		Name			"coils_num"
+		Prompt			"Number of coil registers"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		42
+		Type			"edit"
+		Name			"discrete_in_addr"
+		Prompt			"Discrete in start address"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		43
+		Type			"edit"
+		Name			"discrete_in_num"
+		Prompt			"Number of discrete in registers"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		44
+		Type			"edit"
+		Name			"holding_addr"
+		Prompt			"Holding registers start address"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		45
+		Type			"edit"
+		Name			"holding_num"
+		Prompt			"Number of holding registers"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		46
+		Type			"edit"
+		Name			"input_addr"
+		Prompt			"Input registers start address"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		47
+		Type			"edit"
+		Name			"input_num"
+		Prompt			"Number of input registers"
+		Value			"0"
+	      }
+	      PropName		      "Parameters"
+	    }
+	    Array {
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
+	      Object {
+		$ObjectID		48
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  49
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		50
+		Prompt			"Simulink:studio:ToolBarParametersMenu"
+		Array {
+		  Type			  "Simulink.dialog.Control"
+		  Dimension		  7
+		  Object {
+		    $ObjectID		    51
+		    $ClassName		    "Simulink.dialog.Text"
+		    Prompt		    "Server socket parameters"
+		    Name		    "Control2"
+		  }
+		  Object {
+		    $ObjectID		    52
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "ip"
+		  }
+		  Object {
+		    $ObjectID		    53
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "port"
+		  }
+		  Object {
+		    $ObjectID		    54
+		    $ClassName		    "Simulink.dialog.Group"
+		    Prompt		    "Coils"
+		    Array {
+		    Type		    "Simulink.dialog.Control"
+		    Dimension		    3
+		    Object {
+		    $ObjectID		    55
+		    $ClassName		    "Simulink.dialog.Text"
+		    Prompt		    "Configuration of the Coil map"
+		    Name		    "Control3"
+		    }
+		    Object {
+		    $ObjectID		    56
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "coils_addr"
+		    }
+		    Object {
+		    $ObjectID		    57
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "coils_num"
+		    }
+		    PropName		    "DialogControls"
+		    }
+		    Name		    "Container3"
+		  }
+		  Object {
+		    $ObjectID		    58
+		    $ClassName		    "Simulink.dialog.Group"
+		    Prompt		    "Discrete inputs"
+		    Array {
+		    Type		    "Simulink.dialog.Control"
+		    Dimension		    3
+		    Object {
+		    $ObjectID		    59
+		    $ClassName		    "Simulink.dialog.Text"
+		    Prompt		    "Configuration of the Discrete input map"
+		    Name		    "Control3_copy"
+		    }
+		    Object {
+		    $ObjectID		    60
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "discrete_in_addr"
+		    }
+		    Object {
+		    $ObjectID		    61
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "discrete_in_num"
+		    }
+		    PropName		    "DialogControls"
+		    }
+		    Name		    "Container4"
+		  }
+		  Object {
+		    $ObjectID		    62
+		    $ClassName		    "Simulink.dialog.Group"
+		    Prompt		    "Holding registers"
+		    Array {
+		    Type		    "Simulink.dialog.Control"
+		    Dimension		    3
+		    Object {
+		    $ObjectID		    63
+		    $ClassName		    "Simulink.dialog.Text"
+		    Prompt		    "Configuration of the Holding register map"
+		    Name		    "Control3_copy_copy"
+		    }
+		    Object {
+		    $ObjectID		    64
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "holding_addr"
+		    }
+		    Object {
+		    $ObjectID		    65
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "holding_num"
+		    }
+		    PropName		    "DialogControls"
+		    }
+		    Name		    "Container5"
+		  }
+		  Object {
+		    $ObjectID		    66
+		    $ClassName		    "Simulink.dialog.Group"
+		    Prompt		    "Input Registers"
+		    Array {
+		    Type		    "Simulink.dialog.Control"
+		    Dimension		    3
+		    Object {
+		    $ObjectID		    67
+		    $ClassName		    "Simulink.dialog.Text"
+		    Prompt		    "Configuration of the Input register map"
+		    Name		    "Control3_copy_copy_copy"
+		    }
+		    Object {
+		    $ObjectID		    68
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "input_addr"
+		    }
+		    Object {
+		    $ObjectID		    69
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "input_num"
+		    }
+		    PropName		    "DialogControls"
+		    }
+		    Name		    "Container6"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterGroupVar"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  M-S-Function
+	  Name			  "modbus tcp write to map"
+	  SID			  "4065"
+	  Ports			  [1]
+	  Position		  [510, 563, 645, 617]
+	  ZOrder		  55
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  List {
+	    ListType		    RTWdata
+	    block_type		    "1"
+	    data_type		    "1"
+	    address		    "0"
+	    length		    "1"
+	    bit			    "0"
+	  }
+	  FunctionName		  "sfcn_modbus_server_write_map"
+	  Parameters		  "tsamp,address,block_type,data_type,bit,length"
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    70
+	    $ClassName		    "Simulink.Mask"
+	    Type		    "Modbus TCP write to map"
+	    Description		    "This block is used to write some value(s) to the modbus data map."
+	    Help		    "<h1>Type of register</h1>\n<p>The coils and discrete inputs work in the context of a byte array.</p>\n"
+	    "<p>So offset 0 writes data from the first byte and on, while offset one writes data from the second byte and one,"
+	    " and so on.</p>\n<br>\n<p>Holding and input registers are based on 16 bit values.</p>\n<p>So offset 0 starts writ"
+	    "ing from the start of the map, but offset 1 starts writing 16 bits in.</p>\n<p>This means that if you are writing"
+	    " multiple 8 bit values in a row, the first two bytes will both go to the the first register, and the next two to "
+	    "the second register and so on.</p>\n<br>\n<h1>Data type:</h1>\n<p>The data type determines how much you write to "
+	    "the map, so a boolean will write 1 bit,</p>\n<p>a int8 or uint8 will write half a register, a int16 or uint6 writ"
+	    "es a full register,</p>\n<p>a int32, uint32 or single writes two registers in one go and a double writes four reg"
+	    "isters in one go.</p>\n<br>\n<h1>Number of elements to write:</h1>\n<p>These values are multiplied when increasin"
+	    "g the number of elements written to the map.</p>\n<p>So writing 2 int8 or uint8 values writes one full register, "
+	    "and not two different registers!</p>\n<br>\n<h1>Offset from the base address</h1>\n<p>This value determines where"
+	    " it will start writing to the map.</p>\n<p>As previously mentioned, in the case of coils and discrete inputs, thi"
+	    "s goes up in bytes,</p>\n<p>while holding and input registers increase by 16 bits for every increment to the offs"
+	    "et</p>"
+	    Initialization	    "block_type_str = '';\nswitch (block_type)\n    case 1\n        block_type_str = 'Coil';\n    "
+	    "    if bit < 0 || bit > 7\n            error(\"bit number must be between 0 and 7\");\n        end\n    case 2\n "
+	    "       block_type_str = 'Discrete input';\n        if bit < 0 || bit > 7\n            error(\"bit number must be "
+	    "between 0 and 7\");\n        end\n    case 3\n        block_type_str = 'Holding register';\n        if bit < 0 ||"
+	    " bit > 15\n            error(\"bit number must be between 0 and 15\");\n        end\n    case 4\n        block_ty"
+	    "pe_str = 'Input register';\n        if bit < 0 || bit > 15\n            error(\"bit number must be between 0 and "
+	    "15\");\n        end\nend\n\nif length < 1\n    error(\"number of elements to read can't be less than 1\");\nend\n"
+	    "\nif address < 0\n    error(\"offset from base address can't be less than 0\");\nend\n\nmodelRTWFields = struct('"
+	    "block_type', int2str(block_type), 'data_type', int2str(data_type), 'address', int2str(address), ...\n            "
+	    "                                                            'length', int2str(length),'bit', int2str(bit));\n\n% "
+	    "Insert modelRTWFields in the I/O block S-Function containing the Tag starting with 'HANcoder_TARGET_'\nHANcoder_T"
+	    "ARGET_DataBlock = find_system(gcb, 'RegExp', 'on', 'FollowLinks', 'on', 'LookUnderMasks', 'all', 'BlockType', 'M-"
+	    "S-Function');\nset_param(HANcoder_TARGET_DataBlock{1}, 'RTWdata', modelRTWFields);\n"
+	    Display		    "fprintf(\"Modbus TCP Server\\n write to %s\",block_type_str);\n\ntext(2,6,blockset_modbus_version());"
+	    RunInitForIconRedraw    "on"
+	    IconUnits		    "pixels"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      6
+	      Object {
+		$ObjectID		71
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
+		  Dimension		  4
+		  Cell			  "Coil"
+		  Cell			  "Discrete input"
+		  Cell			  "Holding register"
+		  Cell			  "Input register"
+		  PropName		  "TypeOptions"
+		}
+		Name			"block_type"
+		Prompt			"Type of register to write"
+		Value			"Coil"
+	      }
+	      Object {
+		$ObjectID		72
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
+		  Dimension		  9
+		  Cell			  "double"
+		  Cell			  "single"
+		  Cell			  "int8"
+		  Cell			  "uint8"
+		  Cell			  "int16"
+		  Cell			  "uint16"
+		  Cell			  "int32"
+		  Cell			  "uint32"
+		  Cell			  "boolean"
+		  PropName		  "TypeOptions"
+		}
+		Name			"data_type"
+		Prompt			"Data type"
+		Value			"double"
+		Callback		"type = get_param(gcb, 'data_type');\nswitch (type)\n    case 'boolean'\n        set_param(gcb, 'MaskVisib"
+		"ilities', {'on','on','on','off','on','on'});\n    otherwise\n        set_param(gcb, 'MaskVisibilities', {'on','on','"
+		"on','on','off','on'});\nend\nclear type"
+	      }
+	      Object {
+		$ObjectID		73
+		Type			"edit"
+		Name			"address"
+		Prompt			"Offset from base address"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		74
+		Type			"edit"
+		Name			"length"
+		Prompt			"Number of elements to write"
+		Value			"1"
+	      }
+	      Object {
+		$ObjectID		75
+		Type			"edit"
+		Name			"bit"
+		Prompt			"Bit number"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		76
+		Type			"edit"
+		Name			"tsamp"
+		Prompt			"Sample time"
+		Value			"0.1"
+	      }
+	      PropName		      "Parameters"
+	    }
+	    Array {
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
+	      Object {
+		$ObjectID		77
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  78
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		79
+		Prompt			"Simulink:studio:ToolBarParametersMenu"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  6
+		  Object {
+		    $ObjectID		    80
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "block_type"
+		  }
+		  Object {
+		    $ObjectID		    81
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "data_type"
+		  }
+		  Object {
+		    $ObjectID		    82
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "address"
+		  }
+		  Object {
+		    $ObjectID		    83
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "length"
+		  }
+		  Object {
+		    $ObjectID		    84
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "bit"
+		  }
+		  Object {
+		    $ObjectID		    85
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "tsamp"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterGroupVar"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	  }
+	}
+      }
+    }
+  }
+}
