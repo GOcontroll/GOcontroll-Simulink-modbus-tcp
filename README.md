@@ -6,7 +6,7 @@ A GOcontroll-Simulink extension blockset for setting up a modbus tcp server
 
 # Install
 
-Download the .mltbx file from the latest release and click it from Matlab to install itIN
+Download the .mltbx file from the latest release and click it from Matlab to install it.
 
 # Important notice
 
