@@ -1,0 +1,146 @@
+<deployment-project plugin="plugin.toolbox" plugin-version="1.0">
+  <configuration file="/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp/GOcontroll-Simulink-modbus-tcp.prj" location="/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp" name="GOcontroll-Simulink-modbus-tcp" target="target.toolbox" target-name="Package Toolbox">
+    <param.appname>GOcontroll-Simulink-modbus-tcp</param.appname>
+    <param.authnamewatermark>GOcontroll</param.authnamewatermark>
+    <param.email>info@gocontroll.com</param.email>
+    <param.company>GOcontroll B.V.</param.company>
+    <param.summary>A blockset wrapper for libmodbus targeted at aarch64 linux systems.</param.summary>
+    <param.description />
+    <param.screenshot>${PROJECT_ROOT}/Modbus_Simulink.png</param.screenshot>
+    <param.version>0.0.5</param.version>
+    <param.output>${PROJECT_ROOT}/GOcontroll-Simulink-modbus-tcp.mltbx</param.output>
+    <param.products.name>
+      <item>MATLAB</item>
+      <item>Simulink</item>
+      <item>Embedded Coder</item>
+      <item>MATLAB Coder</item>
+      <item>Simulink Coder</item>
+    </param.products.name>
+    <param.products.id>
+      <item>1</item>
+      <item>2</item>
+      <item>65</item>
+      <item>135</item>
+      <item>14</item>
+    </param.products.id>
+    <param.products.version>
+      <item>9.5</item>
+      <item>9.2</item>
+      <item>7.1</item>
+      <item>4.1</item>
+      <item>9.0</item>
+    </param.products.version>
+    <param.platforms />
+    <param.guid>0338ba4f-306c-449b-b49e-1b2e0387c6c3</param.guid>
+    <param.exclude.filters>.SimulinkProject
+_SimulinkProject
+*.prj
+**/.git
+.gitignore
+.vscode
+GOcontroll-Simulink-modbus-tcp.prj
+**/*.mex*
+examples
+examples/GOcontroll_Modbus_Example.slx
+examples/README.md</param.exclude.filters>
+    <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
+    <param.examples />
+    <param.demosxml />
+    <param.apps />
+    <param.registered.apps />
+    <param.docs />
+    <param.getting.started.guide />
+    <param.matlabpath.excludes />
+    <param.javaclasspath.excludes />
+    <param.exported.on.package>false</param.exported.on.package>
+    <param.release.start>R2018b</param.release.start>
+    <param.release.end>latest</param.release.end>
+    <param.release.current.only>false</param.release.current.only>
+    <param.compatiblity.windows>true</param.compatiblity.windows>
+    <param.compatiblity.macos>true</param.compatiblity.macos>
+    <param.compatiblity.linux>true</param.compatiblity.linux>
+    <param.compatiblity.matlabonline>false</param.compatiblity.matlabonline>
+    <param.installation.map />
+    <param.additional.sw.names />
+    <param.additional.sw.licenses />
+    <param.additional.sw.win.url />
+    <param.additional.sw.mac.url />
+    <param.additional.sw.linux.url />
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.description />
+      <param.output />
+      <param.platforms />
+      <param.exclude.pcodedmfiles />
+      <param.examples />
+      <param.demosxml />
+      <param.apps />
+      <param.registered.apps />
+      <param.docs />
+      <param.getting.started.guide />
+      <param.matlabpath.excludes />
+      <param.javaclasspath.excludes />
+      <param.exported.on.package />
+      <param.release.current.only />
+      <param.compatiblity.windows />
+      <param.compatiblity.macos />
+      <param.compatiblity.linux />
+      <param.installation.map />
+      <param.additional.sw.names />
+      <param.additional.sw.licenses />
+      <param.additional.sw.win.url />
+      <param.additional.sw.mac.url />
+      <param.additional.sw.linux.url />
+    </unset>
+    <fileset.rootdir>
+      <file>/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp</file>
+    </fileset.rootdir>
+    <fileset.rootfiles>
+      <file>${PROJECT_ROOT}/LICENSE</file>
+      <file>${PROJECT_ROOT}/Modbus_Simulink.png</file>
+      <file>${PROJECT_ROOT}/README.md</file>
+      <file>${PROJECT_ROOT}/blockset_modbus_tcp</file>
+    </fileset.rootfiles>
+    <fileset.depfun.included />
+    <fileset.depfun.excluded />
+    <fileset.package />
+    <build-deliverables>
+      <file location="/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp" name="GOcontroll-Simulink-modbus-tcp.mltbx" optional="false">/home/maud/Documents/GitHub/GOcontroll-Simulink-modbus-tcp/GOcontroll-Simulink-modbus-tcp.mltbx</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/usr/local/MATLAB/R2018b</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="embeddedcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>false</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>true</linux>
+      <solaris>false</solaris>
+      <osver>5.15.0-107-generic</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>glnxa64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

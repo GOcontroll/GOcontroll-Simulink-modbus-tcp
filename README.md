@@ -2,25 +2,16 @@
 
 A GOcontroll-Simulink extension blockset for setting up a modbus tcp server
 
-# Usage
+![View of the blocks in Simulink](./Modbus_Simulink.png)
 
-Create a project using the regular [GOcontroll-Simulink](https://github.com/GOcontroll/GOcontroll-Simulink) template.  
-Make a copy or a symbolic link of the blockset_modbus_tcp folder at the root level of this template so it is next to the regular blockset directory:
-``` text
-.
-├── blockset
-├── blockset_modbus_tcp
-├── GOcontroll_Linux.slx
-├── GOcontroll_Linux_startup.m
-├── librarySetup.m
-```
-Start matlab in this project and open your simulink model, the librarySetup.m script will now load this addon into your simulink library.  
-Your library browser should now show a GOcontroll Modbus library.
+# Install
+
+Download the .mltbx file from the latest release and click it from Matlab to install itIN
 
 # Important notice
 
 The [libmodbus](https://github.com/stephane/libmodbus) project is licensed under an LGPL license, this means that it is not allowed to statically link this library in a non GPL licensed project.  
-Therefore you should also make sure that /blockset_modbus_tcp/lib/libmodbus/libmodbus.so.5 is uploaded to /usr/lib/aarch64-linux-gnu/ as it needs to be dynamically loaded.  
+Therefore you should also make sure that *toolbox folder*/blockset_modbus_tcp/lib/libmodbus/libmodbus.so.5 is uploaded to /usr/lib/aarch64-linux-gnu/ as it needs to be dynamically loaded.  
 If this file is not present on the controller and this module is built into your project, the final executable will fail to launch.
 
 # goals

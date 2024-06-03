@@ -37,7 +37,7 @@
 %%It gets calculated in bytes, so sometimes the number of registers needs to be multiplied by two, same goes for the offset.
 %%The number of bytes are calculated in the WriteMemoryBlock function.
 %function CheckTabSize(block, bytes, offset) void
-	%switch (%<block.ParamSettings.block_type>)
+	%switch (%<LibBlockParameterValue(block_type,0)>)
 		%case 1 %%Coil
 			%if ::go_modbus_coils_num < %<bytes> + %<offset>
 				%assign err = "there are %<::go_modbus_coils_num> coil registers defined in your config, but this block is trying to access a register out of this range"
@@ -70,11 +70,11 @@
 %%This function actually expands to the memory write operation depending on the register type, data type, address offset, and length
 %function WriteMemoryBlock(block, tab) Output
 	%%assign these parameters so they can be passed to a function and to have more compact code
-	%assign offset	= block.ParamSettings.address
-	%assign length	= block.ParamSettings.length
-	%assign bit		= block.ParamSettings.bit
+	%assign offset	= LibBlockParameterValue(address,0)
+	%assign length	= LibBlockParameterValue(length,0)
+	%assign bit		= LibBlockParameterValue(bit,0)
 	%assign src		= LibBlockInputSignalAddr(0, "", "", 0)
-	%switch (%<block.ParamSettings.data_type>)
+	%switch (%<LibBlockParameterValue(data_type,0)>)
 		%case 1 %%double
 			%<CheckTabSize(block, length*8, offset)>
 			memcpy(map->%<tab> + %<offset>, %<src>, %<length>*sizeof(double));
@@ -141,7 +141,7 @@
 %function Outputs(block, system) Output
 	%%modbus map is shared between threads, so lock it
 	pthread_mutex_lock(&map_lock);
-	%switch (%<block.ParamSettings.block_type>)
+	%switch (%<LibBlockParameterValue(block_type,0)>)
 		%case 1 %%coil
 			%<WiteMemoryBlock(block, "tab_bits")>
 			%break

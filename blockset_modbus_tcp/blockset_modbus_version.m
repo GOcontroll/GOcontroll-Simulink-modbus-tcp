@@ -30,21 +30,25 @@
 
 function [version] = blockset_modbus_version()
 
-version = "Modbus v0.0.4";
+version = 'Modbus V0.0.5';
+
+%% V0.0.5 Update 3-6-2024:
+%  it is now available as a toolbox
+%  all sfunctions are now cmex
 
 %% V0.0.4 Update 9-2-2024:
-%% improved read/write out of bounds errors, improved tlc code in general
-%% server ip is now configurable
-%%
+%  improved read/write out of bounds errors, improved tlc code in general
+%  server ip is now configurable
+
 %% V0.0.3 Update 8-2-2024:
-%% added a error when the read or write block would go out of bounds of the available memory map
-%% prevents undefined behaviour and segfaults
-%%
+%  added a error when the read or write block would go out of bounds of the available memory map
+%  prevents undefined behaviour and segfaults
+
 %% V0.0.2 Update 8-2-2024:
-%% fixed the holding and input registers being reversed in the tlcs
-%% tcp server component is now usable, only some minor usability improvements left for 1.0.0
-%%
+%  fixed the holding and input registers being reversed in the tlcs
+%  tcp server component is now usable, only some minor usability improvements left for 1.0.0
+
 %% V0.0.1 Update 6-2-2024:
-%% first time actually running in a model, for some reason holding/input register do not seem to work properly yet,
-%% coils and discrete inputs do however seem to work.
-%% this version only supports a modbus tcp server functionality, hopefully other functions will be added later
+%  first time actually running in a model, for some reason holding/input register do not seem to work properly yet,
+%  coils and discrete inputs do however seem to work.
+%  this version only supports a modbus tcp server functionality, hopefully other functions will be added later
