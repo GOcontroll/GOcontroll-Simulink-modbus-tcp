@@ -10,7 +10,6 @@ function makecfg(objBuildInfo)
 	src_path = fullfile(path, '..', 'code');
 	lib_path = fullfile(path, '..', 'lib', 'libmodbus');
 	addIncludePaths(objBuildInfo,{src_path, lib_path}); %add the -I/path/to/includes to the makefile
-	addSourcePaths(objBuildInfo,src_path); 
 	addSourceFiles(objBuildInfo, '*.c', src_path);
 	addLinkObjects(objBuildInfo, fullfile(lib_path, 'libmodbus.so.5'), '', 1000, true, true);
 	clear mfilePath src_path lib_path

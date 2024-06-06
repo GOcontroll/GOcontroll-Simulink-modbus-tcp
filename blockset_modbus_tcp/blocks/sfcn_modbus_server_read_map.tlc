@@ -139,7 +139,7 @@
 %function Outputs(block, system) Output
 	%%modbus map is shared between threads, so lock it
 	pthread_mutex_lock(&map_lock);
-	%switch (%<LibBlockParameterValue(block_type)>)
+	%switch (%<LibBlockParameterValue(block_type,0)>)
 		%case 1 %%coil
 			%<ReadMemoryBlock(block, "tab_bits")>
 			%break

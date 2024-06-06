@@ -119,7 +119,7 @@ static void mdlSetWorkWidths(SimStruct *S) {
 static void mdlRTW(SimStruct *S){
 	char_T *ip = mxArrayToString(ssGetSFcnParam(S,PARAM_IP));
 	char_T ip_buff[20];
-	snprintf(ip_buff, 20, "\"%s\"", ip);
+	snprintf(ip_buff, 20, "\"%s\"", ip); //need to add the quotes for the rtw format because of the dots in an ip address
 	ssWriteRTWParamSettings(S, 1, SSWRITE_VALUE_STR, PARAM_NAME_IP, ip_buff);
 }
 #endif
