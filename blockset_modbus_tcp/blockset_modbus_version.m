@@ -30,7 +30,11 @@
 
 function [version] = blockset_modbus_version()
 
-version = 'Modbus V0.0.5';
+version = 'Modbus V0.0.6';
+
+%% V0.0.6 Update 6-6-2024:
+%  fixed a small tlc issue that caused compilation to fail
+%  removed unnecessary line from mkcfg
 
 %% V0.0.5 Update 3-6-2024:
 %  it is now available as a toolbox

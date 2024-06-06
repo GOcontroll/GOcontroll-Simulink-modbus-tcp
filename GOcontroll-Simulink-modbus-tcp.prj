@@ -7,7 +7,7 @@
     <param.summary>A blockset wrapper for libmodbus targeted at aarch64 linux systems.</param.summary>
     <param.description />
     <param.screenshot>${PROJECT_ROOT}/Modbus_Simulink.png</param.screenshot>
-    <param.version>0.0.5</param.version>
+    <param.version>0.0.6</param.version>
     <param.output>${PROJECT_ROOT}/GOcontroll-Simulink-modbus-tcp.mltbx</param.output>
     <param.products.name>
       <item>MATLAB</item>
