@@ -1,2 +1,5 @@
 *.mltbx
 *.mex*
+.vscode/*
+!.vscode/*shared.json
+!.vscode/extensions.json

@@ -83,118 +83,106 @@
  *     trailer.c
  */
 
-
 #ifndef S_FUNCTION_NAME
 #error 'Please include this file inside an S-Function implementation.'
 #endif
 
 #define S_FUNCTION_LEVEL 2
 
-
 /*
  * Include C numerics library in order to use trunc() and other nice goodies.
  */
 #include <math.h>
-#include <string.h>
 #include <stdio.h>
-#include "mex.h"
+#include <string.h>
+
 #include "matrix.h"
+#include "mex.h"
 
 /*
  * Need to include simstruc.h for the definition of the SimStruct and
  * its associated macro definitions.
  */
 #include "simstruc.h"
-#define EDIT_OK(S, P_IDX) \
- (!((ssGetSimMode(S)==SS_SIMMODE_SIZES_CALL_ONLY) && mxIsEmpty(ssGetSFcnParam(S, P_IDX))))
+#define EDIT_OK(S, P_IDX)                               \
+  (!((ssGetSimMode(S) == SS_SIMMODE_SIZES_CALL_ONLY) && \
+     mxIsEmpty(ssGetSFcnParam(S, P_IDX))))
 #define SAMPLE_TIME (ssGetSFcnParam(S, 1))
-
 
 /* Function: isRealMatrix ======================================================
  * Abstract:
  *     Utility function to verify that the mxArray is a real (double) finite
  *     matrix.
  */
-static bool isRealMatrix(const mxArray * const m)
-{
-    if (mxIsNumeric(m) && mxIsDouble(m) && !mxIsLogical(m) && !mxIsComplex(m) &&
-       !mxIsSparse(m) && !mxIsEmpty(m) && mxGetNumberOfDimensions(m) == 2) {
+static bool isRealMatrix(const mxArray* const m) {
+  if (mxIsNumeric(m) && mxIsDouble(m) && !mxIsLogical(m) && !mxIsComplex(m) &&
+      !mxIsSparse(m) && !mxIsEmpty(m) && mxGetNumberOfDimensions(m) == 2) {
+    const double* const data = mxGetPr(m);
+    const size_t numEl = mxGetNumberOfElements(m);
+    size_t i;
 
-        const double * const data = mxGetPr(m);
-        const size_t numEl = mxGetNumberOfElements(m);
-        size_t i;
-
-        for (i = 0; i < numEl; i++) {
-            if (!mxIsFinite(data[i])) {
-                return(false);
-            }
-        }
-
-        return(true);
-
-    } else {
-
-        return(false);
-
+    for (i = 0; i < numEl; i++) {
+      if (!mxIsFinite(data[i])) {
+        return (false);
+      }
     }
-}
 
+    return (true);
+
+  } else {
+    return (false);
+  }
+}
 
 /* Function: checkSampleTime ===================================================
  * Abstract:
  *     Utility function to verify that sample time (for variable sample time
  *     blocks) is valid.
  */
-static bool checkSampleTime(SimStruct* S, int paramNum)
-{
-    if EDIT_OK(S, paramNum) {
+static bool checkSampleTime(SimStruct* S, int paramNum) {
+  if EDIT_OK (S, paramNum) {
+    const real_T* sampleTime = NULL;
+    const size_t stArraySize = mxGetM(SAMPLE_TIME) * mxGetN(SAMPLE_TIME);
 
-        const real_T* sampleTime = NULL;
-        const size_t stArraySize = mxGetM(SAMPLE_TIME) * mxGetN(SAMPLE_TIME);
+    /* Sample time must be a real scalar value or 2 element array. */
+    if (isRealMatrix(SAMPLE_TIME) && (stArraySize == 1 || stArraySize == 2)) {
+      sampleTime = (real_T*)mxGetPr(SAMPLE_TIME);
 
-        /* Sample time must be a real scalar value or 2 element array. */
-        if (isRealMatrix(SAMPLE_TIME) &&
-           (stArraySize == 1 || stArraySize == 2)) {
-
-            sampleTime = (real_T*) mxGetPr(SAMPLE_TIME);
-
-        } else {
-            ssSetErrorStatus(S,
-                "Invalid sample time. Sample time must be a "
-                "real scalar value or an array of two real values.");
-            return false;
-        }
-
-        if (sampleTime[0] < 0.0 && sampleTime[0] != -1.0) {
-            ssSetErrorStatus(S,
-                "Invalid sample time. Period must be non-negative or "
-                "-1 (for inherited).");
-            return false;
-        }
-
-        if (stArraySize == 2 && sampleTime[0] > 0.0 &&
-           sampleTime[1] >= sampleTime[0]) {
-            ssSetErrorStatus(S,
-                "Invalid sample time. Offset must be smaller than period.");
-            return false;
-        }
-
-        if (stArraySize == 2 && sampleTime[0] == -1.0 && sampleTime[1] != 0.0) {
-            ssSetErrorStatus(S,
-                "Invalid sample time. When period is -1, offset must be 0.");
-            return false;
-        }
-
-        if (stArraySize == 2 && sampleTime[0] == 0.0 &&
-           !(sampleTime[1] == 1.0)) {
-            ssSetErrorStatus(S,
-                "Invalid sample time. When period is 0, offset must be 1.");
-            return false;
-        }
+    } else {
+      ssSetErrorStatus(S,
+                       "Invalid sample time. Sample time must be a "
+                       "real scalar value or an array of two real values.");
+      return false;
     }
-    return true;
-}
 
+    if (sampleTime[0] < 0.0 && sampleTime[0] != -1.0) {
+      ssSetErrorStatus(S,
+                       "Invalid sample time. Period must be non-negative or "
+                       "-1 (for inherited).");
+      return false;
+    }
+
+    if (stArraySize == 2 && sampleTime[0] > 0.0 &&
+        sampleTime[1] >= sampleTime[0]) {
+      ssSetErrorStatus(
+          S, "Invalid sample time. Offset must be smaller than period.");
+      return false;
+    }
+
+    if (stArraySize == 2 && sampleTime[0] == -1.0 && sampleTime[1] != 0.0) {
+      ssSetErrorStatus(
+          S, "Invalid sample time. When period is -1, offset must be 0.");
+      return false;
+    }
+
+    if (stArraySize == 2 && sampleTime[0] == 0.0 && !(sampleTime[1] == 1.0)) {
+      ssSetErrorStatus(
+          S, "Invalid sample time. When period is 0, offset must be 1.");
+      return false;
+    }
+  }
+  return true;
+}
 
 /* Function: SetNumParams ===================================================
  * Abstract:
@@ -204,158 +192,145 @@ static bool checkSampleTime(SimStruct* S, int paramNum)
  *     (by calling S-Function specific mdlCheckParameters() function).
  */
 static void mdlCheckParameters(SimStruct* S);
-static bool SetNumParams(SimStruct* S, int_T numParams)
-{
-    ssSetNumSFcnParams(S, numParams);
+static bool SetNumParams(SimStruct* S, int_T numParams) {
+  ssSetNumSFcnParams(S, numParams);
 
-    #ifdef MATLAB_MEX_FILE
-    if (ssGetNumSFcnParams(S) == ssGetSFcnParamsCount(S)) {
-
-        mdlCheckParameters(S);
-        if (ssGetErrorStatus(S) != NULL) {
-            return false;
-        }
-    } else {
-        /* Return if number of expected != number of actual parameters */
-        return false;
+#ifdef MATLAB_MEX_FILE
+  if (ssGetNumSFcnParams(S) == ssGetSFcnParamsCount(S)) {
+    mdlCheckParameters(S);
+    if (ssGetErrorStatus(S) != NULL) {
+      return false;
     }
-    #endif
+  } else {
+    /* Return if number of expected != number of actual parameters */
+    return false;
+  }
+#endif
 
-    /* Set the parameters tunable status */
-    int i;
-    for (i = 0; i < numParams; i++) {
-        ssSetSFcnParamTunable(S, i, false);
-    }
+  /* Set the parameters tunable status */
+  int i;
+  for (i = 0; i < numParams; i++) {
+    ssSetSFcnParamTunable(S, i, false);
+  }
 
-    return true;
+  return true;
 }
-
 
 /* Function: AddInputPort ===================================================
  * Abstract:
  *     Utility function to add an standard single width input port.
  */
-static bool AddInputPort(SimStruct* S, int_T port, DTypeId type)
-{
-    ssSetInputPortWidth(S, port, 1);
-    ssSetInputPortDataType(S, port, type);
-    ssSetInputPortComplexSignal(S, port, COMPLEX_NO);
-    ssSetInputPortDirectFeedThrough(S, port, true);
-    ssSetInputPortRequiredContiguous(S, port, true);
+static bool AddInputPort(SimStruct* S, int_T port, DTypeId type) {
+  ssSetInputPortWidth(S, port, 1);
+  ssSetInputPortDataType(S, port, type);
+  ssSetInputPortComplexSignal(S, port, COMPLEX_NO);
+  ssSetInputPortDirectFeedThrough(S, port, true);
+  ssSetInputPortRequiredContiguous(S, port, true);
 }
 
-/* Function: AddInputVectorPort ===================================================
- * Abstract:
- *     Utility function to add an standard vector width input port.
+/* Function: AddInputVectorPort
+ * =================================================== Abstract: Utility
+ * function to add an standard vector width input port.
  */
-static bool AddInputVectorPort(SimStruct* S, int_T port, DTypeId type, int_T size)
-{
-    ssSetInputPortWidth(S, port, size);
-    ssSetInputPortDataType(S, port, type);
-    ssSetInputPortComplexSignal(S, port, COMPLEX_NO);
-    ssSetInputPortDirectFeedThrough(S, port, true);
-    ssSetInputPortRequiredContiguous(S, port, true);
+static bool AddInputVectorPort(SimStruct* S, int_T port, DTypeId type,
+                               int_T size) {
+  ssSetInputPortWidth(S, port, size);
+  ssSetInputPortDataType(S, port, type);
+  ssSetInputPortComplexSignal(S, port, COMPLEX_NO);
+  ssSetInputPortDirectFeedThrough(S, port, true);
+  ssSetInputPortRequiredContiguous(S, port, true);
 }
-
 
 /* Function: AddOutputPort ==================================================
  * Abstract:
  *     Utility function to add an standard single width output port.
  */
-static bool AddOutputPort(SimStruct* S, int_T port, DTypeId type)
-{
-    ssSetOutputPortWidth(S, port, 1);
-    ssSetOutputPortDataType(S, port, type);
-    ssSetOutputPortComplexSignal(S, port, COMPLEX_NO);
+static bool AddOutputPort(SimStruct* S, int_T port, DTypeId type) {
+  ssSetOutputPortWidth(S, port, 1);
+  ssSetOutputPortDataType(S, port, type);
+  ssSetOutputPortComplexSignal(S, port, COMPLEX_NO);
 }
 
-/* Function: AddOutputVectorPort ==================================================
- * Abstract:
- *     Utility function to add an standard vector width output port.
+/* Function: AddOutputVectorPort
+ * ================================================== Abstract: Utility function
+ * to add an standard vector width output port.
  */
-static bool AddOutputVectorPort(SimStruct* S, int_T port, DTypeId type, int_T size)
-{
-    ssSetOutputPortWidth(S, port, size);
-    ssSetOutputPortDataType(S, port, type);
-    ssSetOutputPortComplexSignal(S, port, COMPLEX_NO);
+static bool AddOutputVectorPort(SimStruct* S, int_T port, DTypeId type,
+                                int_T size) {
+  ssSetOutputPortWidth(S, port, size);
+  ssSetOutputPortDataType(S, port, type);
+  ssSetOutputPortComplexSignal(S, port, COMPLEX_NO);
 }
-
 
 /* Function: SetStandardOptions =============================================
  * Abstract:
  *     Common / standard options for RPP blocks.
  */
-static void SetStandardOptions(SimStruct* S)
-{
-    /* Specify the sim state compliance to be same as a built-in block */
-    ssSetSimStateCompliance(S, USE_DEFAULT_SIM_STATE);
+static void SetStandardOptions(SimStruct* S) {
+  /* Specify the sim state compliance to be same as a built-in block */
+  ssSetSimStateCompliance(S, USE_DEFAULT_SIM_STATE);
 
-    /* Set the number of sample time. */
-    ssSetNumSampleTimes(S, 1);
+  /* Set the number of sample time. */
+  ssSetNumSampleTimes(S, 1);
 
-    /*
-     * All options have the form SS_OPTION_<name> and are documented in
-     * <matlabroot>/simulink/include/simstruc.h. The options should be
-     * combined with bitwise OR as in
-     *   ssSetOptions(S, (SS_OPTION_name1 | SS_OPTION_name2))
-     */
-    ssSetOptions(S,
-        SS_OPTION_WORKS_WITH_CODE_REUSE |
-        SS_OPTION_CAN_BE_CALLED_CONDITIONALLY |
-        SS_OPTION_USE_TLC_WITH_ACCELERATOR);
+  /*
+   * All options have the form SS_OPTION_<name> and are documented in
+   * <matlabroot>/simulink/include/simstruc.h. The options should be
+   * combined with bitwise OR as in
+   *   ssSetOptions(S, (SS_OPTION_name1 | SS_OPTION_name2))
+   */
+  ssSetOptions(S, SS_OPTION_WORKS_WITH_CODE_REUSE |
+                      SS_OPTION_CAN_BE_CALLED_CONDITIONALLY |
+                      SS_OPTION_USE_TLC_WITH_ACCELERATOR);
 }
-
 
 /* Function: ValidParamRange ================================================
  * Abstract:
  *     Validate that given parameter is scalar, numeric and between given range.
  */
-static bool ValidParamRange(SimStruct* S, int_T parIdx, int_T mn, int_T mx)
-{
-    const mxArray* raw = ssGetSFcnParam(S, parIdx);
-    if (mxGetNumberOfElements(raw) != 1) {
-        ssSetErrorStatus(S, "Parameter to S-function must be a scalar.");
-        return false;
-    }
+static bool ValidParamRange(SimStruct* S, int_T parIdx, int_T mn, int_T mx) {
+  const mxArray* raw = ssGetSFcnParam(S, parIdx);
+  if (mxGetNumberOfElements(raw) != 1) {
+    ssSetErrorStatus(S, "Parameter to S-function must be a scalar.");
+    return false;
+  }
 
-    if (!mxIsDouble(raw)) {
-        ssSetErrorStatus(S, "Parameter to S-function must be numeric.");
-        return false;
-    }
+  if (!mxIsDouble(raw)) {
+    ssSetErrorStatus(S, "Parameter to S-function must be numeric.");
+    return false;
+  }
 
-    double num = (mxGetPr(raw))[0];
-    if (trunc(num) != num) {
-        /* printf("Num      : %2.6f\n", num); */
-        /* printf("Num trunc: %2.6f\n", trunc(num)); */
-        ssSetErrorStatus(S, "Parameter to S-function must be an integer.");
-        return false;
-    }
+  double num = (mxGetPr(raw))[0];
+  if (trunc(num) != num) {
+    /* printf("Num      : %2.6f\n", num); */
+    /* printf("Num trunc: %2.6f\n", trunc(num)); */
+    ssSetErrorStatus(S, "Parameter to S-function must be an integer.");
+    return false;
+  }
 
-    if ((num < mn) || (num > mx)) {
-        ssSetErrorStatus(S, "Parameter to S-function must be "
-                            "between specified range.");
-        return false;
-    }
+  if ((num < mn) || (num > mx)) {
+    ssSetErrorStatus(S,
+                     "Parameter to S-function must be "
+                     "between specified range.");
+    return false;
+  }
 
-    return true;
+  return true;
 }
-
 
 /* Function: ValidParamBoolean ==============================================
  * Abstract:
  *     Validate that given parameter is boolean (logical).
  */
-static bool ValidParamBoolean(SimStruct* S, int_T parIdx)
-{
-    const mxArray* raw = ssGetSFcnParam(S, parIdx);
-    if (!mxIsLogicalScalar(raw)) {
-        ssSetErrorStatus(S, "Parameter to S-function must be a scalar.");
-        return false;
-    }
+static bool ValidParamBoolean(SimStruct* S, int_T parIdx) {
+  const mxArray* raw = ssGetSFcnParam(S, parIdx);
+  if (!mxIsLogicalScalar(raw)) {
+    ssSetErrorStatus(S, "Parameter to S-function must be a scalar.");
+    return false;
+  }
 
-    return true;
+  return true;
 }
-
 
 /*
  *==============================================================================
@@ -363,7 +338,6 @@ static bool ValidParamBoolean(SimStruct* S, int_T parIdx)
  *==============================================================================
  */
 #ifdef NEVER_DEFINED
-
 
 /* Function: mdlCheckParameters ================================================
  * Abstract:
@@ -376,15 +350,13 @@ static bool ValidParamBoolean(SimStruct* S, int_T parIdx)
  */
 #ifdef MATLAB_MEX_FILE
 #define MDL_CHECK_PARAMETERS
-static void mdlCheckParameters(SimStruct* S)
-{
-    /* Check the parameter 1 */
-    if (!ValidParamRange(S, 0, 1, 20)) {
-        return;
-    }
+static void mdlCheckParameters(SimStruct* S) {
+  /* Check the parameter 1 */
+  if (!ValidParamRange(S, 0, 1, 20)) {
+    return;
+  }
 }
 #endif
-
 
 /* Function: mdlRTW ============================================================
  * Abstract:
@@ -395,12 +367,8 @@ static void mdlCheckParameters(SimStruct* S)
  */
 #ifdef MATLAB_MEX_FILE
 #define MDL_RTW
-static void mdlRTW(SimStruct* S)
-{
-    UNUSED_PARAMETER(S);
-}
+static void mdlRTW(SimStruct* S) { UNUSED_PARAMETER(S); }
 #endif
-
 
 /* Function: mdlSetWorkWidths ==================================================
  * Abstract:
@@ -416,18 +384,16 @@ static void mdlRTW(SimStruct* S)
  */
 #ifdef MATLAB_MEX_FILE
 #define MDL_SET_WORK_WIDTHS
-static void mdlSetWorkWidths(SimStruct* S)
-{
-    /* Set number of run-time parameters */
-    if (!ssSetNumRunTimeParams(S, 1)) {
-        return;
-    }
+static void mdlSetWorkWidths(SimStruct* S) {
+  /* Set number of run-time parameters */
+  if (!ssSetNumRunTimeParams(S, 1)) {
+    return;
+  }
 
-    /* Register the run-time parameter 1 */
-    ssRegDlgParamAsRunTimeParam(S, 0, 0, "p1", SS_UINT8);
+  /* Register the run-time parameter 1 */
+  ssRegDlgParamAsRunTimeParam(S, 0, 0, "p1", SS_UINT8);
 }
 #endif
-
 
 /* Function: mdlStart ==========================================================
  * Abstract:
@@ -438,9 +404,6 @@ static void mdlSetWorkWidths(SimStruct* S)
  *     See http://www.mathworks.com/help/simulink/sfg/mdlstart.html
  */
 #define MDL_START
-static void mdlStart(SimStruct* S)
-{
-    UNUSED_PARAMETER(S);
-}
+static void mdlStart(SimStruct* S) { UNUSED_PARAMETER(S); }
 
 #endif /* NEVER_DEFINED */

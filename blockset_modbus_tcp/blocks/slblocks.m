@@ -2,10 +2,10 @@
 
 function blkStruct = slblocks()
 
-	Browser.Library = 'GOcontroll_Modbus';
+Browser.Library = 'GOcontroll_Modbus';
 
-	Browser.Name = 'GOcontroll Modbus';
+Browser.Name = 'GOcontroll Modbus';
 
-	blkStruct.Browser = Browser;
+blkStruct.Browser = Browser;
 
 end

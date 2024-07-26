@@ -49,10 +49,7 @@
  *     block's characteristics (number of inputs, outputs, states, etc.).
  */
 #ifdef UNUSED_MDLINITIALIZESIZES
-static void mdlInitializeSizes(SimStruct *S)
-{
-    UNUSED_PARAMETER(S);
-}
+static void mdlInitializeSizes(SimStruct *S) { UNUSED_PARAMETER(S); }
 #endif
 
 /* Function: mdlInitializeSampleTimes ==========================================
@@ -62,20 +59,16 @@ static void mdlInitializeSizes(SimStruct *S)
  *     specified in ssSetNumSampleTimes.
  */
 #ifdef UNUSED_MDLINITIALIZESAMPLETIMES
-static void mdlInitializeSampleTimes(SimStruct *S)
-{
-    UNUSED_PARAMETER(S);
-}
+static void mdlInitializeSampleTimes(SimStruct *S) { UNUSED_PARAMETER(S); }
 #endif
 
 #ifdef COMMON_MDLINITIALIZESAMPLETIMES_INHERIT
-static void mdlInitializeSampleTimes(SimStruct *S)
-{
-    ssSetSampleTime(S, 0, INHERITED_SAMPLE_TIME);
-    ssSetOffsetTime(S, 0, 0.0);
-    #if defined(ssSetModelReferenceSampleTimeDefaultInheritance)
-    ssSetModelReferenceSampleTimeDefaultInheritance(S);
-    #endif
+static void mdlInitializeSampleTimes(SimStruct *S) {
+  ssSetSampleTime(S, 0, INHERITED_SAMPLE_TIME);
+  ssSetOffsetTime(S, 0, 0.0);
+#if defined(ssSetModelReferenceSampleTimeDefaultInheritance)
+  ssSetModelReferenceSampleTimeDefaultInheritance(S);
+#endif
 }
 #endif
 
@@ -86,10 +79,9 @@ static void mdlInitializeSampleTimes(SimStruct *S)
  *     ssGetOutputPortSignal.
  */
 #ifdef UNUSED_MDLOUTPUTS
-static void mdlOutputs(SimStruct *S, int_T tid)
-{
-    UNUSED_PARAMETER(S);
-    UNUSED_PARAMETER(tid);
+static void mdlOutputs(SimStruct *S, int_T tid) {
+  UNUSED_PARAMETER(S);
+  UNUSED_PARAMETER(tid);
 }
 #endif
 
@@ -99,10 +91,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
  *     at the termination of a simulation.
  */
 #ifdef UNUSED_MDLTERMINATE
-static void mdlTerminate(SimStruct *S)
-{
-    UNUSED_PARAMETER(S);
-}
+static void mdlTerminate(SimStruct *S) { UNUSED_PARAMETER(S); }
 #endif
 
 /* Function: mdlCheckParameters ================================================
@@ -118,17 +107,14 @@ static void mdlTerminate(SimStruct *S)
  *           refactor that commonly used block of code.
  */
 #ifdef UNUSED_MDLCHECKPARAMETERS
-static void mdlCheckParameters(SimStruct *S)
-{
-    UNUSED_PARAMETER(S);
-}
+static void mdlCheckParameters(SimStruct *S) { UNUSED_PARAMETER(S); }
 #endif
 
 /*
  * Required S-function trailer
  */
 #ifdef MATLAB_MEX_FILE
-# include "simulink.c"
+#include "simulink.c"
 #else
-# include "cg_sfun.h"
+#include "cg_sfun.h"
 #endif

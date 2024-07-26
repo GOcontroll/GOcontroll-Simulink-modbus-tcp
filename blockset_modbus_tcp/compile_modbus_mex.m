@@ -1,7 +1,7 @@
 %get the path of this script so we can compile the mexes using it.
 mfilePath = mfilename('fullpath');
 if contains(mfilePath,'LiveEditorEvaluationHelper')
-    mfilePath = matlab.desktop.editor.getActiveFilename;
+	mfilePath = matlab.desktop.editor.getActiveFilename;
 end
 %remove the filename from the end
 [path, ~, ~] = fileparts(mfilePath);
